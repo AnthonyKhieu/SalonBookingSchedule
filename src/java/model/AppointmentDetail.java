@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class AppointmentDetail extends AbsModel{
     private Appointment appointment;
-    private ArrayList<ServiceType> services = new ArrayList();
+    private ArrayList<Service> services = new ArrayList();
 
     public AppointmentDetail() {
     }
@@ -30,11 +30,11 @@ public class AppointmentDetail extends AbsModel{
         this.appointment = appointment;
     }
 
-    public ArrayList<ServiceType> getServices() {
+    public ArrayList<Service> getServices() {
         return services;
     }
 
-    public void setServices(ArrayList<ServiceType> services) {
+    public void setServices(ArrayList<Service> services) {
         this.services = services;
     }
     

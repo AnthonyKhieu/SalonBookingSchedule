@@ -1,0 +1,46 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+section{
+	text-align: center;
+}
+section h2{
+	color: snow;
+	font-family: Trebuchet MS;
+}
+section form{
+    min-width: 350px;
+    min-height: 350px;
+    border: 1px solid activeborder;
+    border-radius: 10px;
+    margin: 10px auto;
+    padding-top: 20px;
+    background-color: graytext;
+}
+input{	
+	overflow: hidden;
+	min-width: 200px;
+	width: 300px;
+	height: 40px;
+	border: 2px solid black;
+        background-color: snow;
+        margin-top: 10px;
+}
+.phone, .date, .hour{
+	height: 50px;
+	padding-top: 10px;
+}
+section form button{
+    margin-top: 30px;
+    border: 1px solid activeborder;
+    border-radius: 10px;
+    background-color: activecaption;
+    width: 120px;
+    height: 40px;
+}
+section form button:hover{
+    background-color: orange;
+    border: azure;
+    
+}

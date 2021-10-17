@@ -1,0 +1,7 @@
+h1{
+    padding-top: 30px;
+    text-align: center;
+}
+h1::first-letter{
+    color: #00cc33;
+}
