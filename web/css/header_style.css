@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Popins';
+    box-sizing: border-box;
+}
+header ul{
+    min-height: 50px;
+    max-height: 150px;
+    background-color: black;
+}
+header ul li {
+    text-align: center;
+    margin: 20px auto;
+    width: 50px;
+}
+header ul .login:hover {
+    background-color: activeborder;
+}
+header .nav{
+    position: relative;
+    display: flex;
+}
+header .nav li{
+    text-align: center;
+    width: 120px;
+    height: 30px;
+    list-style: none;
+    transition: 0.5s;
+}
+
+header .nav li a{
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+    font-family: Comic Sans MS;
+    font-weight: bold;
+    text-align: center;
+}
+header .nav li a:hover{
+    color: seagreen;
+    letter-spacing: 1px;
+    background-color: activeborder;
+    transition: 0.5s;
+}
+
+p{
+    font-weight: 300;
+    color: #111;
+}
+.banner {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: url('background4.jpg'); */
+    background-size: cover;
+    color: white;
+}
+

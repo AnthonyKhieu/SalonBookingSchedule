@@ -1,0 +1,53 @@
+/*header.sticky{
+	background: lightblue;
+	padding: 10px 100px;
+	box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+header.sticky .nav ul li{
+    background: lightcyan;
+}
+header.sticky .nav ul li a{
+    color: black;
+}
+header.sticky .nav ul li a:hover{
+    color: darkorange;
+    letter-spacing: 3px;
+}*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Trebuchet MS;
+
+}
+.btn{
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    background: orange;
+    display: inline-block;
+    padding: 15px 30px;
+    margin-top: 20px;
+    text-transform: uppercase;
+    border-radius: 30px;
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: 0.25s;
+
+}
+.btn:hover{
+    background-color: green;
+}
+.banner .content{
+    max-width: 900px;
+    text-align: center;
+}
+.banner .content h2{
+    font-size: 5em;
+    color: black;
+}
+.banner .content p{
+    background-color: black;
+    font-size: 2em;
+    color: #c4c702;
+}

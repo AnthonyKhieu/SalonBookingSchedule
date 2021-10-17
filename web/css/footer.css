@@ -1,0 +1,14 @@
+footer{
+	margin-top: 0px;
+	padding-top: 5px;
+	text-align: center;
+	background-color: black;
+	font-weight: 300;
+	font-family: Trebuchet MS;
+	font-style: italic;
+	color: white;
+}
+
+footer span{
+    color: snow;
+}
