@@ -8,11 +8,13 @@ package controller.web;
 import dal.ServiceDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Service;
 
 /**
  *
@@ -32,8 +34,10 @@ public class ServicesController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ServiceDBContext hairDBC = new ServiceDBContext();
-        request.setAttribute("services", hairDBC.getAll());
+        ServiceDBContext serviceDBC = new ServiceDBContext();
+        ArrayList<Service> services = new ArrayList<>();
+        ArrayList<ArrayList<Service>> mainService = new ArrayList<>();
+        ArrayList<ArrayList<Service>> sideService = new ArrayList<>();
         request.getRequestDispatcher("view/web/services.jsp").forward(request, response);
     }
 
