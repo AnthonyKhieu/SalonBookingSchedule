@@ -12,15 +12,13 @@ package model;
 public class ServiceType extends AbsModel{
     private int typeID;
     private String typeName;
-    private boolean isMain;
 
     public ServiceType() {
     }
 
-    public ServiceType(int typeID, String typeName, boolean isMain) {
+    public ServiceType(int typeID, String typeName) {
         this.typeID = typeID;
         this.typeName = typeName;
-        this.isMain = isMain;
     }
 
     public int getTypeID() {
@@ -37,17 +35,7 @@ public class ServiceType extends AbsModel{
 
     public void setTypeName(String typeName) {
         this.typeName = typeName;
-    }
-
-    public boolean isIsMain() {
-        return isMain;
-    }
-
-    public void setIsMain(boolean isMain) {
-        this.isMain = isMain;
-    }
-    
-    
+    }    
     
     
 }

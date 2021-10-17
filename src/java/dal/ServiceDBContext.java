@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Service;
@@ -39,7 +40,9 @@ public class ServiceDBContext extends DBContext implements AbsDBC<Service> {
     public ArrayList<Service> getAll() {
         ArrayList<Service> list = new ArrayList();
         try {
-            String query = "Select * from Services s inner join ServiceType st on s.typeID = st.typeID";
+            String query = "Select * from "
+                    + "Services s inner join ServiceType st on s.typeID = st.typeID "
+                    + "order by s.typeID asc";
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -54,7 +57,6 @@ public class ServiceDBContext extends DBContext implements AbsDBC<Service> {
                 ServiceType st = new ServiceType();
                 st.setTypeID(rs.getInt("typeID"));
                 st.setTypeName(rs.getString("typeName"));
-                st.setIsMain(rs.getBoolean("isMain"));
                 s.setType(st);
                 list.add(s);
             }
@@ -64,5 +66,5 @@ public class ServiceDBContext extends DBContext implements AbsDBC<Service> {
         return list;
     }
     
-
+    
 }
