@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/model/Service.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/dal/ServiceDBContext.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/web/view/web/header.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/web/css/services_style.css</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/web/view/web/services.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/model/ServiceType.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/dal/ServiceTypeDBContext.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/dal/ServiceDBContext.java</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/controller/web/ServicesController.java</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/test/Test.java</file>
         </group>

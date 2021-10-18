@@ -5,26 +5,20 @@
  */
 package controller.web;
 
-import dal.ServiceDBContext;
-import dal.ServiceTypeDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Service;
-import model.ServiceType;
 
 /**
  *
  * @author Admin
  */
-@WebServlet(name = "ServicesController", urlPatterns = {"/services"})
-public class ServicesController extends HttpServlet {
+@WebServlet(name = "DetailController", urlPatterns = {"/details"})
+public class DetailController extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -38,27 +32,8 @@ public class ServicesController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ServiceTypeDBContext servTypeDBC = new ServiceTypeDBContext();
-        ArrayList<ServiceType> servType = servTypeDBC.getAll(servTypeDBC.getSize());
-        request.setAttribute("servType", servType);
-
-        ServiceDBContext serviceDBC = new ServiceDBContext();
-        ArrayList<Service> allServices = serviceDBC.getAll(serviceDBC.getSize());
-
-        HashMap<ServiceType, ArrayList<Service>> serv_map = new HashMap();
-        for (Service s : allServices) {
-            for (ServiceType st : servType) {
-                if (serv_map.get(st) == null) {
-                    ArrayList<Service> thisServices = new ArrayList<>();
-                    serv_map.put(st, thisServices);
-                }
-                if(s.getType().getTypeID() == st.getTypeID()){
-                    serv_map.get(st).add(s);
-                }
-            }
-        }
-        request.setAttribute("mappingServices", serv_map);
-        request.getRequestDispatcher("view/web/services.jsp").forward(request, response);
+        int sid = Integer.parseInt(request.getParameter("sid"));
+        
     }
 
     /**
@@ -72,6 +47,7 @@ public class ServicesController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
     }
 
     /**

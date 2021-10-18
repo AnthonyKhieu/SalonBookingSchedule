@@ -31,6 +31,16 @@ public class EmployeeDBContext extends DBContext implements AbsDBC<Employee>{
         return null;
     }
 
+    @Override
+    public Employee getByID(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getTotalModel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
     
 }

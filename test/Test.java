@@ -19,10 +19,10 @@ import model.ServiceType;
 public class Test {
      public static void main(String[] args) {
           ServiceTypeDBContext servTypeDBC = new ServiceTypeDBContext();
-        ArrayList<ServiceType> servType = servTypeDBC.getAll();
+        ArrayList<ServiceType> servType = servTypeDBC.getAll(servTypeDBC.getSize());
 
         ServiceDBContext serviceDBC = new ServiceDBContext();
-        ArrayList<Service> allServices = serviceDBC.getAll();
+        ArrayList<Service> allServices = serviceDBC.getAll(serviceDBC.getSize());
 
         HashMap<ServiceType, ArrayList<Service>> serv_map = new HashMap();
         for (Service s : allServices) {

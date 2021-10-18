@@ -44,4 +44,9 @@ public class AccountDBContext extends DBContext implements AbsDBC<Account> {
         return null;
     }
 
+    @Override
+    public Account getByID(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

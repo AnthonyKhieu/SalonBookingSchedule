@@ -21,6 +21,10 @@ public interface AbsDBC<Model extends AbsModel> {
     void update(Model m);
     
     void delete(Model m);
+  
+    Model getByID(int id);
     
-    ArrayList<Model> getAll();
+    int getSize();
+    
+    ArrayList<Model> getAll(int number);
 }

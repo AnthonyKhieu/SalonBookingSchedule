@@ -33,11 +33,12 @@ public class ServiceTypeDBContext extends DBContext implements AbsDBC<ServiceTyp
     }
 
     @Override
-    public ArrayList<ServiceType> getAll() {
+    public ArrayList<ServiceType> getAll(int number) {
         ArrayList<ServiceType> list = new ArrayList();
         try {
-            String query = "Select * from ServiceType";
+            String query = "Select top (?) * from ServiceType";
             PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, number);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ServiceType st = new ServiceType();
@@ -50,5 +51,26 @@ public class ServiceTypeDBContext extends DBContext implements AbsDBC<ServiceTyp
         }
         return list;
     }
+
+    @Override
+    public ServiceType getByID(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getSize() {
+        try {
+            String query = "Select count(*) as total from ServiceType ";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
 
 }
