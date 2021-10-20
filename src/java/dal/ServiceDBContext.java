@@ -72,7 +72,7 @@ public class ServiceDBContext extends DBContext implements AbsDBC<Service> {
         try {
             String query = "Select * from "
                     + "Services s inner join ServiceType st on s.typeID = st.typeID "
-                    + "where id = ?";
+                    + "where serviceID = ?";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -112,6 +112,32 @@ public class ServiceDBContext extends DBContext implements AbsDBC<Service> {
         return 0;
     }
 
-
-
+    public ArrayList<Service> getServiceByType(ServiceType st) {
+        ArrayList<Service> list = new ArrayList();
+        try {
+            String query = "Select * from "
+                    + "Services s inner join ServiceType st on s.typeID = st.typeID "
+                    + "order by ordered desc, time asc";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int st_id = rs.getInt("typeID");
+                if (st_id == st.getTypeID()) {
+                    Service s = new Service();
+                    s.setId(rs.getInt("serviceID"));
+                    s.setName(rs.getString("serviceName"));
+                    s.setImages(rs.getString("images"));
+                    s.setTime(rs.getDouble("time"));
+                    s.setOrdered(rs.getInt("ordered"));
+                    s.setPrice(rs.getDouble("price"));
+                    s.setDescription(rs.getString("description"));
+                    s.setType(st);
+                    list.add(s);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
 }

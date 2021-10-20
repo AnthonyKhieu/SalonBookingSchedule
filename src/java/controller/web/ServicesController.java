@@ -39,24 +39,17 @@ public class ServicesController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ServiceTypeDBContext servTypeDBC = new ServiceTypeDBContext();
-        ArrayList<ServiceType> servType = servTypeDBC.getAll(servTypeDBC.getSize());
-        request.setAttribute("servType", servType);
+        ArrayList<ServiceType> allType = servTypeDBC.getAll(servTypeDBC.getSize());
+        request.setAttribute("servType", allType);
 
         ServiceDBContext serviceDBC = new ServiceDBContext();
-        ArrayList<Service> allServices = serviceDBC.getAll(serviceDBC.getSize());
-
+        
         HashMap<ServiceType, ArrayList<Service>> serv_map = new HashMap();
-        for (Service s : allServices) {
-            for (ServiceType st : servType) {
-                if (serv_map.get(st) == null) {
-                    ArrayList<Service> thisServices = new ArrayList<>();
-                    serv_map.put(st, thisServices);
-                }
-                if(s.getType().getTypeID() == st.getTypeID()){
-                    serv_map.get(st).add(s);
-                }
-            }
+        for(ServiceType st : allType){
+            ArrayList<Service> list = serviceDBC.getServiceByType(st);
+            serv_map.put(st, list);
         }
+        
         request.setAttribute("mappingServices", serv_map);
         request.getRequestDispatcher("view/web/services.jsp").forward(request, response);
     }

@@ -54,7 +54,21 @@ public class ServiceTypeDBContext extends DBContext implements AbsDBC<ServiceTyp
 
     @Override
     public ServiceType getByID(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String query = "Select * from ServiceType where typeID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                ServiceType st = new ServiceType();
+                st.setTypeID(id);
+                st.setTypeName(rs.getString("typeName"));
+                return st;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceTypeDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override

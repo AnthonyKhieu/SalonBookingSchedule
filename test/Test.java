@@ -18,30 +18,14 @@ import model.ServiceType;
  */
 public class Test {
      public static void main(String[] args) {
-          ServiceTypeDBContext servTypeDBC = new ServiceTypeDBContext();
-        ArrayList<ServiceType> servType = servTypeDBC.getAll(servTypeDBC.getSize());
-
+         
+        int id = 1;
+        ServiceTypeDBContext servTypeDBC = new ServiceTypeDBContext();
         ServiceDBContext serviceDBC = new ServiceDBContext();
-        ArrayList<Service> allServices = serviceDBC.getAll(serviceDBC.getSize());
-
-        HashMap<ServiceType, ArrayList<Service>> serv_map = new HashMap();
-        for (Service s : allServices) {
-            for (ServiceType st : servType) {
-                if (serv_map.get(st) == null) {
-                    ArrayList<Service> thisServices = new ArrayList<>();
-                    serv_map.put(st, thisServices);
-                }
-                if(s.getType().getTypeID() == st.getTypeID()){
-                    serv_map.get(st).add(s);
-                }
-            }
-        }
         
-        for(ServiceType st : serv_map.keySet()){
-            ArrayList<Service> list = serv_map.get(st);
-            for(Service s : list){
-                System.out.println(s.getId() + " " + s.getName() + " " +  s.getTime() + " " + s.getPrice());
-            }
-        }
-    }
+        Service s = serviceDBC.getByID(id);
+         System.out.println(s.toString());
+        
+     
+    }   
 }

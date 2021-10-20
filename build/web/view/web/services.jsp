@@ -13,6 +13,7 @@
         <meta name = "viewport" content="width=device-width, initial-scale=1.0">
         <title>Our Service</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/services_style.css">
+        <script src="${pageContext.request.contextPath}/js/button.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
@@ -36,28 +37,23 @@
         <c:forEach items="${mappingServices.keySet()}" var="type" >
             <section class="site-section">
                 <div class="container">
-                    <div class="row justify-content-center mb-5">
-                        <div class="col-md-7 text-center">
-                            <h1>TOP ${type.typeName}</h1>
-                            <a href="serviceType?st_id=${type.typeID}">View All</a>
-                        </div>
+                    <div class="justify-content-center mb-5">
+                            <h1>Top ${type.typeName}</h1>
+                            <span class="view"> <a href="serviceType?st_id=${type.typeID}">View All >></a> </span>
                     </div>
-                    <div class="row">
+                    <div class="row data">
                         <c:forEach items="${mappingServices.get(type)}" var="s" begin="0" end="3">
                             <div class="col-lg-3 col-md-3 col-sm-6 col-12 justify-content-center">
                                 <div class="service">
-                                <img src="images/${s.images}" alt="Image placeholder" style="width: 100%; height: auto">
-                                <h3>${s.name}</h3>
-                                <p>
-                                    Price: ${s.price}$ 
-                                    <br> 
-                                    ${s.time} min 
-                                </p>
-                                <a href="detail?sid=${s.id}" class="detail-btn"> Detail </a>
-                                </div>
-                                <div class="modal">
-                                    <div class="modal-content">
-                                        <div class="close"></div>
+                                    <img src="images/${s.images}" alt="images/default.jpg" style="width: 100%; height: 300px">
+                                    <h3>${s.name}</h3>
+                                    <p>
+                                        Price: ${s.price}$ 
+                                        <br> 
+                                        ${s.time} min 
+                                    </p>
+                                    <div class="detail-btn">
+                                        <a href="serviceDetail?sid=${s.id}"> Detail </a>
                                     </div>
                                 </div>
                             </div>
