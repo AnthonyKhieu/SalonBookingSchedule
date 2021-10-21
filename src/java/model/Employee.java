@@ -12,19 +12,20 @@ package model;
 public class Employee extends AbsModel{
     private int id;
     private String name;
-    private String email;
-    private String address;
-    private String phone;
+    private String insta;
+    private String description;
+    private String images;
+    
 
-    public Employee() {
-    }
-
-    public Employee(int id, String name, String email, String address, String phone) {
+    public Employee(int id, String name, String insta, String description, String images) {
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.address = address;
-        this.phone = phone;
+        this.insta = insta;
+        this.description = description;
+        this.images = images;
+    }
+
+    public Employee() {
     }
 
     public int getId() {
@@ -43,29 +44,31 @@ public class Employee extends AbsModel{
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getInsta() {
+        return insta;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setInsta(String insta) {
+        this.insta = insta;
     }
 
-    public String getAddress() {
-        return address;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getImages() {
+        return images;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setImages(String images) {
+        this.images = images;
     }
+
+    
     
     
 }

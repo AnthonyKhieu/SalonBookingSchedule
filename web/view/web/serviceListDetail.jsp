@@ -28,6 +28,10 @@
             h2::first-letter{
                 color: blueviolet;
             }
+            .service{
+                border-top: 5px solid #cc00cc;
+                
+            }
         </style>
     </head>
     <body>

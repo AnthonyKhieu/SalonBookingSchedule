@@ -1,8 +1,10 @@
 
+import dal.EmployeeDBContext;
 import dal.ServiceDBContext;
 import dal.ServiceTypeDBContext;
 import java.util.ArrayList;
 import java.util.HashMap;
+import model.Employee;
 import model.Service;
 import model.ServiceType;
 
@@ -19,12 +21,11 @@ import model.ServiceType;
 public class Test {
      public static void main(String[] args) {
          
-        int id = 1;
-        ServiceTypeDBContext servTypeDBC = new ServiceTypeDBContext();
-        ServiceDBContext serviceDBC = new ServiceDBContext();
-        
-        Service s = serviceDBC.getByID(id);
-         System.out.println(s.toString());
+        EmployeeDBContext db = new EmployeeDBContext();
+        for(Employee e : db.getAll(db.getSize())){
+            System.out.println(e.getId() + e.getImages());
+        }
+
         
      
     }   

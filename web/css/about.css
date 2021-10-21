@@ -1,0 +1,31 @@
+*{
+    text-align: left;
+}
+.about{
+    margin: 10px 10px;
+}
+.row h1{
+    font-size: 60px;
+    text-align: center;
+    letter-spacing: 1px;
+    color: #0099ff;
+}
+.container .row .e-name{
+    font-family: sans-serif;
+    color: #999900;
+    font-size: 50px;
+    text-align: center;
+    
+}
+.e-insta{
+    font-family: serif;
+    letter-spacing: 1px;
+}
+
+.e-des{
+    text-align: left;
+}
+
+.employeeList{
+    border-top: 5px solid #009900;
+}

@@ -4,57 +4,70 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name = "viewport" content="width=device-width, initial-scale=1.0">
         <title>JSP Page</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/about.css">
     </head>
     <body>
         <!-- Header -->
         <jsp:include page="header.jsp"></jsp:include>
 
             <!-- Content -->
-            <section class="justify-content-center">
+            <section class="justify-content-center about">
                 <div class="row mb-5 justify-content-center">
-                    <div class="col-md-8 text-left">
+                    <div class="col-md-5 text-left">
                         <h1>About us</h1>
-                        <p> Bull House Barbers Barnsley was established in 2018, by business partners and professional barbers Eadon Asquith and Jay O’Neill. 
-                        Jay and Eadon have been working side by side since early 2012 and between them, have more than fifteen years’ experience in barbering.
-                        After perfecting their art and working at the very top of their game for a number of years, the two made the decision to take their expertise to the next level. 
-                        Thus, the concept for Bull House Barbers was born! A barbershop in Barnsley that offers much more than your average haircut. 
-                        A place for customers to sit back, relax and unwind from the stresses of day to day life. A premium barbershop in all senses of the word; except for the price.
+                        <p>Our thoughtfully curated collection of superior hair, skin, and shave essentials are designed to unleash what makes you, you. 
+                            You’ve got your own story, your own signature statement. 
+                            We offer a curated collection of grooming must-haves to free your best self and fuel your next level.
+                            Our superior assortment of hair, skin and shaving essentials gets the job done in the simplest, most powerful way possible.
+                            <br>Since 1965, our top-notch products have proven that premium doesn’t have to be pretentious. 
+                            Performance is everything so every formula is tried and tested at the award-winning Baxter Finley Barber + Shop in Los Angeles.
                         </p>
-                        <iframe width="100%" height="500" src="https://www.youtube.com/embed/TJk-cBZdl1A?start=18" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                    
+
+                    </div>
+                    <div class="col-md-7" text-right>
+                        <img src="images/baxter.png" style="width: 100%; height: auto">                             
                     </div>
                 </div>
             </section>
+            <iframe width="100%" height="500" src="https://www.youtube.com/embed/TJk-cBZdl1A?start=18" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        
             <section class="pt-5 pb-5">
                 <div class="container">
                     <div class="row mb-5 justify-content-center">
                         <div class="col-md-8 text-center">
-                            <h1>Team</h1>
-                            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis quia tempore magni dolore dolorum reprehenderit illum consectetur minima</p>
+                            <h1>Meet our Team</h1>
                         </div>
                     </div>
-                    <div class="row">
-                        <!-- loop all barber in the shop -->
+                    <!-- loop all barber in the shop -->
+                <c:forEach items="${employees}" var="e">
+                    <div class="row employeeList">
                         <div class="col-md-6 mb-5">
-                            <img src="images/img_5.jpg" alt="Image placeholder" class="img-fluid">
+                            <img src="images/${e.images}" alt="images/default.jpg" class="img-fluid" style="width: 100%; height: auto">
                         </div>
                         <div class="col-md-6 pl-md-5">
-                            <h3>Jay Ramzee</h3>
-                            <p class="lead">Expert Barber</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam facere a excepturi quod impedit rerum ipsum totam incidunt, necessitatibus id veritatis maiores quos saepe dolore commodi magnam fugiat. Incidunt, omnis.</p>
-                            <p>Nobis quae eaque facere architecto eligendi, voluptas quasi, blanditiis aperiam possimus inventore quis nam! Cupiditate necessitatibus, voluptatem excepturi placeat exercitationem quos vitae ut vero dolorem, provident sit odio porro facere.</p>
+                            <div class="e-name">${e.name}</div>
+                            <h2>About</h2>
+                            <div class="e-des">${e.description}</div>
+                            <div class="e-insta">
+                                <a href="${e.insta}">
+                                    Follow Instagram <img src="images/instagram_icon.png" style="width: 30px; height: 30px">
+                                </a>
+                            </div>
                         </div>
-                        <!-- loop all barber in the shop -->
                     </div>
-                </div>
-            </section>
+                </c:forEach>
+                <!-- loop all barber in the shop -->
+            </div>
+        </section>
 
-            <!-- Footer -->
+        <!-- Footer -->
         <jsp:include page="footer.jsp"></jsp:include>
     </body>
 </html>

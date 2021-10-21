@@ -33,7 +33,7 @@ public class ServiceDBContext extends DBContext implements AbsDBC<Service> {
 
     @Override
     public void delete(Service s) {
-
+        
     }
 
     @Override
