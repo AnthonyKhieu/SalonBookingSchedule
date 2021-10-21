@@ -40,12 +40,17 @@ public class AccountDBContext extends DBContext implements AbsDBC<Account> {
     }
 
     @Override
-    public ArrayList<Account> getAll() {
-        return null;
+    public Account getByID(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Account getByID(int id) {
+    public int getSize() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Account> getAll(int number) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

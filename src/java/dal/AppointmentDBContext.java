@@ -40,13 +40,19 @@ public class AppointmentDBContext extends DBContext implements AbsDBC<Appointmen
     public void delete(Appointment m) {
     }
 
-    @Override
-    public ArrayList<Appointment> getAll() {
-        return null;
-    }
 
     @Override
     public Appointment getByID(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getSize() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Appointment> getAll(int number) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

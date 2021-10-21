@@ -22,14 +22,50 @@ public class EmployeeDBContext extends DBContext implements AbsDBC<Employee> {
 
     @Override
     public void add(Employee e) {
+        try {
+            String query = "Insert into Employees values"
+                    + "(?, ?, ?, ?)";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, e.getName());
+            ps.setString(2, e.getInsta());
+            ps.setString(3, e.getDescription());
+            ps.setString(4, e.getImages());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void update(Employee e) {
+        try {
+            String query = "Update Services set "
+                    + "employeeName = ?"
+                    + "insta = ? "
+                    + "description = ? "
+                    + "images = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, e.getName());
+            ps.setString(2, e.getInsta());
+            ps.setString(3, e.getDescription());
+            ps.setString(4, e.getImages());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override
     public void delete(Employee e) {
+        try {
+            String query = "Delete Employees where employeeID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, e.getId());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

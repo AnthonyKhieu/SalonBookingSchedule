@@ -23,17 +23,59 @@ public class ServiceDBContext extends DBContext implements AbsDBC<Service> {
 
     @Override
     public void add(Service s) {
-
+        try {
+            String query = "Insert into Employees values"
+                    + "(?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, s.getId());
+            ps.setString(2, s.getName());
+            ps.setString(3, s.getImages());
+            ps.setDouble(4, s.getPrice());
+            ps.setInt(5, s.getOrdered());
+            ps.setString(6, s.getDescription());
+            ps.setDouble(7, s.getPrice());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void update(Service s) {
+        try {
+            String query = "Update Services set\n"
+                    + "typeID = ?,\n"
+                    + "serviceName = ?,\n"
+                    + "images = ?,\n"
+                    + "time = ?,\n"
+                    + "ordered = ?,\n"
+                    + "description = ?,\n"
+                    + "price = ?\n";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, s.getId());
+            ps.setString(2, s.getName());
+            ps.setString(3, s.getImages());
+            ps.setDouble(4, s.getPrice());
+            ps.setInt(5, s.getOrdered());
+            ps.setString(6, s.getDescription());
+            ps.setDouble(7, s.getPrice());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
     @Override
     public void delete(Service s) {
-        
+        try {
+            String query = "Delete from Services where serviceID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, s.getId());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
