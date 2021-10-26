@@ -5,13 +5,17 @@
  */
 package controller.web;
 
+import dal.CustomerDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Customer;
 
 /**
  *
@@ -19,7 +23,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "CustomerController", urlPatterns = {"/customer"})
 public class CustomerController extends HttpServlet {
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -33,7 +36,29 @@ public class CustomerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+        HttpSession session = request.getSession();
+        Customer standard = (Customer) session.getAttribute("searchModel");
+        if (standard == null) {
+            standard = new Customer();
+        }
+        CustomerDBContext cusDBC = new CustomerDBContext();
+        String pageNo = request.getParameter("pageNo");
+        if (pageNo == null) {
+            pageNo = "1";
+        }
+        int pageCurrent = Integer.parseInt(pageNo);
+        int rowPerPage = 5;
+        ArrayList<Customer> allCustomers = cusDBC.paginateGetting(pageCurrent, rowPerPage, standard);
+        int totalRecord = cusDBC.getSize(standard);
+        int totalPage = totalRecord / rowPerPage;
+        if (totalRecord % rowPerPage != 0) {
+            totalPage++;
+        }
+        request.setAttribute("allCustomer", allCustomers);
+        request.setAttribute("rowPerPage", rowPerPage);
+        request.setAttribute("pageCurrent", pageCurrent);
+        request.setAttribute("totalPage", totalPage);
+        request.getRequestDispatcher("view/admin/customer.jsp").forward(request, response);
     }
 
     /**
@@ -47,7 +72,17 @@ public class CustomerController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-     
+        HttpSession session = request.getSession();
+        Customer standard = (Customer) session.getAttribute("searchModel");
+        if (standard == null) {
+            standard = new Customer();
+        }
+        String searchName = request.getParameter("searchName");
+        standard.setName(searchName.trim());
+        String searchPhone = request.getParameter("searchPhone");
+        standard.setPhone(searchPhone.trim());
+        session.setAttribute("searchModel", standard);
+        doGet(request, response);
     }
 
     /**

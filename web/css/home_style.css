@@ -20,7 +20,7 @@ header.sticky .nav ul li a:hover{
     font-family: Trebuchet MS;
 
 }
-.btn{
+.content .btn{
     color: white;
     font-weight: bold;
     font-size: 1em;
@@ -30,13 +30,15 @@ header.sticky .nav ul li a:hover{
     margin-top: 20px;
     text-transform: uppercase;
     border-radius: 30px;
+    border: 2px solid gold;
     text-decoration: none;
     letter-spacing: 2px;
     transition: 0.25s;
 
 }
-.btn:hover{
-    background-color: green;
+.content .btn:hover{
+    background-color: yellowgreen;
+    color: #663300;
 }
 .banner .content{
     max-width: 900px;

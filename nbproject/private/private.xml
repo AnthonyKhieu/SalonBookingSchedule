@@ -3,22 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/controller/web/AppointmentController.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/web/view/web/services.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/model/AbsModel.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/dal/AppointmentDBContext.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/web/view/web/about.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/dal/AbsDBC.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/model/Employee.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/dal/ServiceDBContext.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/dal/CustomerDBContext.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/controller/web/EmployeeController.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/model/Service.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/web/css/about.css</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/controller/auth/LoginController.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/dal/ContactDBContext.java</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/controller/web/CustomerController.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/controller/web/ServiceDetailController.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/dal/AbsDBC.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/dal/CustomerDBContext.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/test/Test.java</file>
         </group>
     </open-files>
 </project-private>

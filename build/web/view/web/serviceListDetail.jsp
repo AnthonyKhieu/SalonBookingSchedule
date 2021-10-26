@@ -40,21 +40,19 @@
             <a href="services">  << Services</a>
             
             
-            
-            <h2>${serviceName}</h2>
+            <h2>${st.name}</h2>
             <div class="row">
                 <c:forEach items="${serviceList}" var="s">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-12 justify-content-center">
-                    <div class="service">
+                    <div class="service" style="border: 1px solid #993300; margin: 10px 10px; text-align: center">
                         <img src="images/${s.images}" alt="images/default.jpg" style="width: 100%; height: 300px">
                         <h3>${s.name}</h3>
                         <p>
                             Price: ${s.price}$ 
                             <br> 
                             Time: ${s.time} min 
-                            <br>
-                            ${s.description}
                         </p>
+                        <a href="serviceDetail?sid=${s.id}">View Detail</a>
                     </div>
                 </div>
             </c:forEach>

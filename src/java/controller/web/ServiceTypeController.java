@@ -41,7 +41,7 @@ public class ServiceTypeController extends HttpServlet {
         ServiceTypeDBContext typeDBC = new ServiceTypeDBContext();
         ServiceType st = typeDBC.getByID(st_id);
         
-        request.setAttribute("serviceName", st.getTypeName());
+        request.setAttribute("serviceType", st);
         request.setAttribute("serviceList", servDBC.getServiceByType(st));
         request.getRequestDispatcher("view/web/serviceListDetail.jsp").forward(request, response);
     }

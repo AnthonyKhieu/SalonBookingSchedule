@@ -37,7 +37,6 @@
                     </div>
                 </div>
             </section>
-            <iframe width="100%" height="500" src="https://www.youtube.com/embed/TJk-cBZdl1A?start=18" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        
             <section class="pt-5 pb-5">
                 <div class="container">
                     <div class="row mb-5 justify-content-center">

@@ -60,7 +60,7 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "header.jsp", out, false);
       out.write("\n");
-      out.write("\n");
+      out.write("        \n");
       out.write("        <!--Content-->\n");
       out.write("        <section class=\"banner\" id = \"banner\" style=\"background-image: url(");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));

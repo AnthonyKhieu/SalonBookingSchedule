@@ -17,7 +17,7 @@
     <body>
         <!-- Header -->
         <jsp:include page="header.jsp"></jsp:include>
-
+        
         <!--Content-->
         <section class="banner" id = "banner" style="background-image: url(${pageContext.request.contextPath}/images/home.jpg);">
             <div class="content">

@@ -13,10 +13,19 @@
         <meta name = "viewport" content="width=device-width, initial-scale=1.0">
         <title>JSP Page</title>
         <style>
+            .appoint{
+                margin: 30px auto;
+                width: 60%;
+            }
             a{
                 color: orange;
                 font-size: 25px;
                 padding-left: 10px;
+            }
+            .appoint:hover{
+                background-color: #999999;
+                letter-spacing: 2px;
+                color: wheat;
             }
         </style>
     </head>
@@ -27,16 +36,24 @@
             <a href="services"> << Services</a>
 
         <c:set var = "s" scope = "request" value ="${requestScope.service}"/>
-        <div class="info">
-            <img src="images/${s.images}" alt="images/default.jpg">
-            <h3>${s.name}</h3>
-            <p>
-                Price: ${s.price}$ 
-                <br> 
-                ${s.time} min 
-                <br>
-                ${s.description}
-            </p>
+        <div class="info row" style="margin: 10px 30px;">
+            <div class="col-md-5">
+                <img src="images/${s.images}" alt="images/default.jpg" style="width: 100%; height: auto;">
+            </div>
+            <div class="col-md-7">
+                <h1>${s.name}</h1>
+                <p>
+                    Price: ${s.price}$ 
+                    <br> 
+                    Time: ${s.time} min 
+                    <br>
+                    <h3>Description</h3>
+                    ${s.description}
+                </p>
+                <div class="appoint" style="border: 2px solid #0066cc; text-align: center">
+                    <a href="#">Appointment Now !</a>
+                </div>
+            </div>
         </div>
 
         <!-- Footer -->

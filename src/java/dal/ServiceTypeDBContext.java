@@ -21,15 +21,43 @@ import model.ServiceType;
 public class ServiceTypeDBContext extends DBContext implements AbsDBC<ServiceType> {
 
     @Override
-    public void add(ServiceType st) {
+    public void insert(ServiceType st) {
+        try {
+            String query = "Insert into ServiceType values(?, ?)";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, st.getTypeID());
+            ps.setString(2, st.getTypeName());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceTypeDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void update(ServiceType st) {
+        try {
+            String query = "Update ServiceType SET\n"
+                    + "typeName = ?\n"
+                    + "where typeID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, st.getTypeName());
+            ps.setInt(2, st.getTypeID());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceTypeDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void delete(ServiceType st) {
+        try {
+            String query = "Delete from ServiceType where typeID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, st.getTypeID());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceTypeDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -59,7 +87,7 @@ public class ServiceTypeDBContext extends DBContext implements AbsDBC<ServiceTyp
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 ServiceType st = new ServiceType();
                 st.setTypeID(id);
                 st.setTypeName(rs.getString("typeName"));
@@ -86,5 +114,9 @@ public class ServiceTypeDBContext extends DBContext implements AbsDBC<ServiceTyp
         return 0;
     }
 
+    @Override
+    public ArrayList<ServiceType> pagging(int page, int row) {
+        
+    }
 
 }

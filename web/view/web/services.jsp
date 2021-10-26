@@ -10,12 +10,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name = "viewport" content="width=device-width, initial-scale=1.0">
-        <title>Our Service</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/services_style.css">
-        <script src="${pageContext.request.contextPath}/js/button.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
     <body>
         <!-- Header -->
@@ -33,36 +30,54 @@
                 </ul>
             </div>
         </div>
-
+        <div style="text-align: center; margin-top: 20px; color: #009900;">
+            <h1>Our services</h1>
+        </div>
         <c:forEach items="${mappingServices.keySet()}" var="type" >
-            <section class="site-section">
+            <section class="content">
                 <div class="container">
-                    <div class="justify-content-center mb-5">
-                            <h1>Top ${type.typeName}</h1>
-                            <span class="view"> <a href="serviceType?st_id=${type.typeID}">View All >></a> </span>
-                    </div>
-                    <div class="row data">
-                        <c:forEach items="${mappingServices.get(type)}" var="s" begin="0" end="3">
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-12 justify-content-center">
-                                <div class="service">
-                                    <img src="images/${s.images}" alt="images/default.jpg" style="width: 100%; height: 300px">
-                                    <h3>${s.name}</h3>
-                                    <p>
-                                        Price: ${s.price}$ 
-                                        <br> 
-                                        ${s.time} min 
-                                    </p>
-                                    <div class="detail-btn">
-                                        <a href="serviceDetail?sid=${s.id}"> Detail </a>
+                    <div class="row">
+                        <div class="col-md-3 pr-5">
+                            <h2 class="mb-3">${type.typeName}</h2>
+                            <div class="mb-3 custom-nav">
+                                <a href="#" class="btn btn-primary btn-sm custom-prev mr-2 mb-2"><span class="ion-android-arrow-back"></span></a> 
+                                <a href="#" class="btn btn-primary btn-sm custom-next mr-2 mb-2"><span class="ion-android-arrow-forward"></span></a>
+                            </div>
+                            <div class="view"> <a href="serviceType?st_id=${type.typeID}">View All >></a> </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-12 slider-wrap">
+                                    <div class="owl-carousel owl-theme no-nav js-carousel-1">
+                                        <c:forEach items="${mappingServices.get(type)}" var="s">
+                                            <a href="serviceDetail?sid=${s.id}" class="img-bg" style="background-image: url('${pageContext.request.contextPath}/images/${s.images}')">
+                                                <div class="text">
+                                                    <span class="icon custom-icon flaticon-scissors"></span>
+                                                    <h2>${s.name}</h2>
+                                                    <p>Read More</p>
+                                                </div>
+                                            </a>
+                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>
-                        </c:forEach>
+                            
+                        </div>
                     </div>
                 </div>
             </section>
         </c:forEach>
         <!-- Footer -->
         <jsp:include page="footer.jsp"></jsp:include>
+        <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery-migrate-3.0.0.js"></script>
+        <script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.waypoints.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.stellar.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/magnific-popup-options.js"></script>
+        <script src="${pageContext.request.contextPath}/js/main.js"></script>
     </body>
 </html>

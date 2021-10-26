@@ -20,7 +20,7 @@ import model.Contact;
 public class ContactDBContext extends DBContext implements AbsDBC<Contact> {
 
     @Override
-    public void add(Contact c) {
+    public void insert(Contact c) {
         try {
             String query = "Insert into Contact values"
                     + "(?, ?, ?, ?)";
@@ -42,12 +42,14 @@ public class ContactDBContext extends DBContext implements AbsDBC<Contact> {
                     + "contactName = ?,\n"
                     + "email = ?,\n"
                     + "title = ?,\n"
-                    + "detail = ?";
+                    + "detail = ?\n"
+                    + "where contactID = ?";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, c.getName());
             ps.setString(2, c.getEmail());
             ps.setString(3, c.getTitle());
             ps.setString(4, c.getDetail());
+            ps.setInt(5, c.getId());
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -123,6 +125,11 @@ public class ContactDBContext extends DBContext implements AbsDBC<Contact> {
             Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+
+    @Override
+    public ArrayList<Contact> pagging(int page, int row) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -1,11 +1,13 @@
 
 import dal.ContactDBContext;
+import dal.CustomerDBContext;
 import dal.EmployeeDBContext;
 import dal.ServiceDBContext;
 import dal.ServiceTypeDBContext;
 import java.util.ArrayList;
 import java.util.HashMap;
 import model.Contact;
+import model.Customer;
 import model.Employee;
 import model.Service;
 import model.ServiceType;
@@ -23,16 +25,10 @@ public class Test {
 
     public static void main(String[] args) {
 
-        ContactDBContext contDBC = new ContactDBContext();
-        int id = 1;
-        String name = "Twitter Facebook";
-        String email = "ourteam@gmail.com";
-        String title = "Our concern about this website";
-        String detail = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-        Contact c = new Contact(id, name, email, title, detail);
-        
-        c.setDetail("Rewrite everything");
-        contDBC.update(c);
-
+        CustomerDBContext cusDBC = new CustomerDBContext();
+        Customer standard = new Customer();
+        standard.setName(null);
+        standard.setPhone(null);
+        System.out.println(cusDBC.getSize(standard));
     }
 }

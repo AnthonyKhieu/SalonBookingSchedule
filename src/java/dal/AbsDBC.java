@@ -16,15 +16,19 @@ import model.AbsModel;
  */
 
 public interface AbsDBC<Model extends AbsModel> {
-    void add(Model m);
+    void insert(Model m);
     
     void update(Model m);
     
-    void delete(Model m);
+    void delete(int id);
   
     Model getByID(int id);
     
-    int getSize();
+    int getSize(Model standard);
     
     ArrayList<Model> getAll(int number);
+    
+    ArrayList<Model> paginateGetting(int page, int row, Model standard);
+    
+
 }

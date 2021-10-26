@@ -11,31 +11,37 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     </head>
     <body>
         <!-- Header -->
         <jsp:include page="header.jsp"></jsp:include>
             <!-- Content -->
-            <section class="banner justify-content-center" style="background-image: url(${pageContext.request.contextPath}/images/login.jpg);">
-                <form action="login" method="post">
-                    <div class="imgcontainer">
-                        <img src="${pageContext.request.contextPath}/images/empty-white-male-avatar.jpg" alt="Avatar" class="avatar">
-                    </div>
-                    <div class="container">
-                        <input type="text" placeholder="Enter Username" name="username" required> <br>
-                        <input type="password" placeholder="Enter Password" name="password" required> <br>
-                        <button type="submit">Login</button>
-                        <label>
-                            <input type="checkbox" checked="checked" name="remember"> Remember me
-                        </label>
-                    </div>
 
-                    <div class="container" style="background-color:#f1f1f1">
-                        <button type="button" class="cancelbtn">Cancel</button>
-                        <span class="psw">Forgot <a href="#">password?</a></span>
+            <div class="login-form">
+                <form action="/examples/actions/confirmation.php" method="post">
+                    <h2 class="text-center">Log in</h2>       
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Username" required="required">
                     </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" required="required">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Log in</button>
+                    </div>
+                    <div class="clearfix">
+                        <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
+                        <a href="#" class="float-right">Forgot Password?</a>
+                    </div>        
                 </form>
-            </section>     
+                <p class="text-center"><a href="#">Create an Account</a></p>
+            </div>    
+
             <!-- Footer -->
         <jsp:include page="footer.jsp"></jsp:include>
     </body>

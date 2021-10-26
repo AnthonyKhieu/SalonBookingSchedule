@@ -59,7 +59,7 @@ public class ContactController extends HttpServlet {
         c.setTitle(title);
         c.setDetail(detail);
         ContactDBContext contDBC = new ContactDBContext();
-        contDBC.add(c);
+        contDBC.insert(c);
         doGet(request, response);
     }
 

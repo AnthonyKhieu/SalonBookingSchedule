@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Employee;
-import model.Service;
 
 /**
  *
@@ -21,7 +20,7 @@ import model.Service;
 public class EmployeeDBContext extends DBContext implements AbsDBC<Employee> {
 
     @Override
-    public void add(Employee e) {
+    public void insert(Employee e) {
         try {
             String query = "Insert into Employees values"
                     + "(?, ?, ?, ?)";
@@ -128,6 +127,11 @@ public class EmployeeDBContext extends DBContext implements AbsDBC<Employee> {
             Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+
+    @Override
+    public ArrayList<Employee> pagging(int page, int row) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

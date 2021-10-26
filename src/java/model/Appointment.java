@@ -12,6 +12,7 @@ import java.sql.Date;
  * @author Admin
  */
 public class Appointment extends AbsModel{
+    private int id;
     private Employee employee;
     private Customer customer;
     private double from, to;
@@ -21,7 +22,8 @@ public class Appointment extends AbsModel{
     public Appointment() {
     }
 
-    public Appointment(Employee employee, Customer customer, double from, double to, Date date, String description) {
+    public Appointment(int id, Employee employee, Customer customer, double from, double to, Date date, String description) {
+        this.id = id;
         this.employee = employee;
         this.customer = customer;
         this.from = from;
@@ -30,6 +32,15 @@ public class Appointment extends AbsModel{
         this.description = description;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
     public Employee getEmployee() {
         return employee;
     }
