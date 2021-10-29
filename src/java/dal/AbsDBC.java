@@ -26,6 +26,7 @@ public interface AbsDBC<Model extends AbsModel> {
     
     int getSize(Model standard);
     
+    
     ArrayList<Model> getAll(int number);
     
     ArrayList<Model> paginateGetting(int page, int row, Model standard);

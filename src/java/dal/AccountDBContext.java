@@ -49,11 +49,11 @@ public class AccountDBContext extends DBContext implements AbsDBC<Account> {
     }
 
     @Override
-    public void delete(Account a) {
+    public void delete(int aid) {
         try {
             String query = "Delete from Account where accountID = ?";
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, a.getId());
+            ps.setInt(1, aid);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -75,26 +75,23 @@ public class AccountDBContext extends DBContext implements AbsDBC<Account> {
         } catch (SQLException ex) {
             Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    @Override
-    public int getSize() {
+        return null;
     }
 
     @Override
     public ArrayList<Account> getAll(int number) {
+        return null;
+    }
+
+
+    @Override
+    public int getSize(Account standard) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<Account> pagging(int page, int row) {
-    }
-
-    @Override
-    public Account searchByName(String name) {
-    }
-
-    @Override
-    public ArrayList<Account> multiSearch(Account m) {
+    public ArrayList<Account> paginateGetting(int page, int row, Account standard) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

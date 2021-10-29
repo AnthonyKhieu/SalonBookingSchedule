@@ -37,7 +37,7 @@
     <body>
         <jsp:include page="header.jsp"></jsp:include>
 
-            <a href="services">  << Services</a>
+            <a href="servicesWeb">  << Services</a>
             
             
             <h2>${st.name}</h2>
@@ -58,7 +58,7 @@
             </c:forEach>
         </div>
             
-            <a href="services">  << Services</a>
+            <a href="servicesWeb">  << Services</a>
         <!-- Footer -->
         <jsp:include page="footer.jsp"></jsp:include>
     </body>

@@ -50,11 +50,11 @@ public class AppointmentDBContext extends DBContext implements AbsDBC<Appointmen
     }
 
     @Override
-    public void delete(Appointment a) {
+    public void delete(int aid) {
         try {
             String query = "Delete from Appointment where appointmentID = ?";
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, a.getId());
+            ps.setInt(1, aid);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,10 +66,6 @@ public class AppointmentDBContext extends DBContext implements AbsDBC<Appointmen
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public int getSize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public ArrayList<Appointment> getAll(int number) {
@@ -77,8 +73,14 @@ public class AppointmentDBContext extends DBContext implements AbsDBC<Appointmen
     }
 
     @Override
-    public ArrayList<Appointment> pagging(int page, int row) {
+    public int getSize(Appointment standard) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public ArrayList<Appointment> paginateGetting(int page, int row, Appointment standard) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 }

@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/controller/web/CustomerController.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/dal/AbsDBC.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/dal/CustomerDBContext.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/web/view/admin/employee.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/dal/EmployeeDBContext.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/controller/web/EmployeeUpdateController.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/model/Employee.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/web/view/web/home.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/controller/web/EmployeeCreateController.java</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/test/Test.java</file>
         </group>
     </open-files>

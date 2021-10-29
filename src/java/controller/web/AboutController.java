@@ -5,6 +5,7 @@
  */
 package controller.web;
 
+import dal.EmployeeDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Employee;
 
 /**
  *
@@ -32,7 +34,10 @@ public class AboutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("employee");
+        EmployeeDBContext empDBC = new EmployeeDBContext();
+        Employee standard = new Employee();
+        request.setAttribute("employees", empDBC.getAll(empDBC.getSize(standard)));
+        request.getRequestDispatcher("view/web/about.jsp").forward(request, response);
     }
 
     /**

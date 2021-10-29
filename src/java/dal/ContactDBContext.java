@@ -57,11 +57,11 @@ public class ContactDBContext extends DBContext implements AbsDBC<Contact> {
     }
 
     @Override
-    public void delete(Contact c) {
+    public void delete(int cid) {
         try {
             String query = "Delete from Contact where contactID = ?";
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, c.getId());
+            ps.setInt(1, cid);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,21 +91,6 @@ public class ContactDBContext extends DBContext implements AbsDBC<Contact> {
     }
 
     @Override
-    public int getSize() {
-        try {
-            String query = "Select count(*) as total from Contact ";
-            PreparedStatement ps = connection.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return rs.getInt("total");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return 0;
-    }
-
-    @Override
     public ArrayList<Contact> getAll(int number) {
         ArrayList<Contact> list = new ArrayList();
         try {
@@ -128,7 +113,12 @@ public class ContactDBContext extends DBContext implements AbsDBC<Contact> {
     }
 
     @Override
-    public ArrayList<Contact> pagging(int page, int row) {
+    public int getSize(Contact standard) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Contact> paginateGetting(int page, int row, Contact standard) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -99,4 +99,10 @@ public class Service extends AbsModel{
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "Service{" + "id=" + id + ", name=" + name + ", type=" + type + ", images=" + images + ", time=" + time + ", ordered=" + ordered + ", description=" + description + ", price=" + price + '}';
+    }
+
+    
 }

@@ -49,11 +49,11 @@ public class ServiceTypeDBContext extends DBContext implements AbsDBC<ServiceTyp
     }
 
     @Override
-    public void delete(ServiceType st) {
+    public void delete(int stId) {
         try {
             String query = "Delete from ServiceType where typeID = ?";
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, st.getTypeID());
+            ps.setInt(1, stId);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ServiceTypeDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -100,23 +100,39 @@ public class ServiceTypeDBContext extends DBContext implements AbsDBC<ServiceTyp
     }
 
     @Override
-    public int getSize() {
+    public int getSize(ServiceType standard) {
         try {
-            String query = "Select count(*) as total from ServiceType ";
+            ArrayList<Object> conditions = new ArrayList();
+            String query = "Select count(*) as total \n"
+                    + "from ServiceType\n"
+                    + "where(1=1)\n";
+            if (standard.getTypeID() != 0) {
+                query += "and typeID = ?\n";
+                conditions.add(standard.getTypeID());
+            }
             PreparedStatement ps = connection.prepareStatement(query);
+            int i = 1;
+            for (; i <= conditions.size(); i++) {
+                Object o = conditions.get(i - 1);
+                if (o instanceof Integer) {
+                    ps.setInt(i, (int) o);
+                } else {
+                    ps.setString(i, (String) o);
+                }
+            }
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return rs.getInt("total");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServiceTypeDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return 0;
     }
 
     @Override
-    public ArrayList<ServiceType> pagging(int page, int row) {
-        
+    public ArrayList<ServiceType> paginateGetting(int page, int row, ServiceType standard) {
+        return null;
     }
 
 }

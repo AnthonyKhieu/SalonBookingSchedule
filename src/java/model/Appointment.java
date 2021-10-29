@@ -6,6 +6,7 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,11 +19,13 @@ public class Appointment extends AbsModel{
     private double from, to;
     private Date date;
     private String description;
-
+    private ArrayList<Service> services = new ArrayList<>();
+            
     public Appointment() {
     }
 
-    public Appointment(int id, Employee employee, Customer customer, double from, double to, Date date, String description) {
+    public Appointment(int id, Employee employee, Customer customer, double from, double to, 
+            Date date, String description, ArrayList<Service> services) {
         this.id = id;
         this.employee = employee;
         this.customer = customer;
@@ -30,6 +33,7 @@ public class Appointment extends AbsModel{
         this.to = to;
         this.date = date;
         this.description = description;
+        this.services = services;
     }
 
     public int getId() {
@@ -87,6 +91,14 @@ public class Appointment extends AbsModel{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public ArrayList<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(ArrayList<Service> services) {
+        this.services = services;
     }
     
     

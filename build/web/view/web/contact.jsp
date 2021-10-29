@@ -20,7 +20,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <form action="contact" method="post">
+                            <form action="contactWeb" method="post">
                                 <div class="row">
                                     <div class="col-md-4 form-group">
                                         <label for="name">Name</label>

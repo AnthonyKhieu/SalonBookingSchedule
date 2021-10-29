@@ -33,7 +33,7 @@
         <!-- Header -->
         <jsp:include page="header.jsp"></jsp:include>
 
-            <a href="services"> << Services</a>
+            <a href="servicesWeb"> << Services</a>
 
         <c:set var = "s" scope = "request" value ="${requestScope.service}"/>
         <div class="info row" style="margin: 10px 30px;">

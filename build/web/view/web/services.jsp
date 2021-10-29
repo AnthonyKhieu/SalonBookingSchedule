@@ -24,7 +24,7 @@
                     <ul class="list_Services">
                     <c:forEach items="${servType}" var="st">
                         <li>
-                            <a href="serviceType?st_id=${st.typeID}">${st.typeName}</a>
+                            <a href="serviceTypeWeb?st_id=${st.typeID}">${st.typeName}</a>
                         </li>
                     </c:forEach>
                 </ul>
@@ -43,14 +43,14 @@
                                 <a href="#" class="btn btn-primary btn-sm custom-prev mr-2 mb-2"><span class="ion-android-arrow-back"></span></a> 
                                 <a href="#" class="btn btn-primary btn-sm custom-next mr-2 mb-2"><span class="ion-android-arrow-forward"></span></a>
                             </div>
-                            <div class="view"> <a href="serviceType?st_id=${type.typeID}">View All >></a> </div>
+                            <div class="view"> <a href="serviceTypeWeb?st_id=${type.typeID}">View All >></a> </div>
                         </div>
                         <div class="col-md-9">
                             <div class="row">
                                 <div class="col-md-12 slider-wrap">
                                     <div class="owl-carousel owl-theme no-nav js-carousel-1">
                                         <c:forEach items="${mappingServices.get(type)}" var="s">
-                                            <a href="serviceDetail?sid=${s.id}" class="img-bg" style="background-image: url('${pageContext.request.contextPath}/images/${s.images}')">
+                                            <a href="serviceDetailWeb?sid=${s.id}" class="img-bg" style="background-image: url('${pageContext.request.contextPath}/images/${s.images}')">
                                                 <div class="text">
                                                     <span class="icon custom-icon flaticon-scissors"></span>
                                                     <h2>${s.name}</h2>

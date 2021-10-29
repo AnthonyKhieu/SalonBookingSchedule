@@ -41,10 +41,10 @@
                     <a class="nav-link" href="${pageContext.request.contextPath}/about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/contactWeb">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/services">Services</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/servicesWeb">Services</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link login" href="${pageContext.request.contextPath}/login" 
