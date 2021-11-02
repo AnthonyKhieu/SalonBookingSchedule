@@ -1,7 +1,7 @@
-    <%-- 
-    Document   : serviceList
-    Created on : Oct 28, 2021, 4:59:32 PM
-    Author     : Admin
+<%-- 
+Document   : serviceList
+Created on : Oct 28, 2021, 4:59:32 PM
+Author     : Admin
 --%>
 
 <%-- 
@@ -41,24 +41,24 @@
 
     </head>
     <body>
-
-        <div class="container-xl">
-            <div class="table-responsive">
-                <div class="table-wrapper">
-                    <div class="table-title">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <h2><a href="#">Home</a></h2>
-                                <h1>Services <b>List</b></h1>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="search-box">
-                                    <form action="service" method="post">
-                                        Search by Name <input type="text" name="searchName" class="form-control" placeholder="--All--"
-                                                              <c:if test="${sessionScope.serviceModel.name != null}">
-                                                                  value="${sessionScope.serviceModel.name}"
-                                                              </c:if>
-                                                              >
+        <jsp:include page="adminHeader.jsp"></jsp:include>
+            <div class="container-xl">
+                <div class="table-responsive">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h2><a href="#">Home</a></h2>
+                                    <h1>Services <b>List</b></h1>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="search-box">
+                                        <form action="service" method="post">
+                                            Search by Name <input type="text" name="searchName" class="form-control" placeholder="--All--"
+                                            <c:if test="${sessionScope.serviceModel.name != null}">
+                                                value="${sessionScope.serviceModel.name}"
+                                            </c:if>
+                                            >
                                         Search by Service Type 
                                         <select name="searchType"> <br>
                                             <option value="0">--All--</option>
@@ -151,28 +151,30 @@
                         </c:forEach>
                         </tbody>
                     </table>
-                    <!-- Page Selector -->
+                    <!-- Page -->
                     <div class="clearfix">
                         <div class="hint-text"> <b> Page ${pageCurrent} </b>  of <b>${totalPage}</b></div>
                         <ul class="pagination">
                             <li class="page-item page">
-                                <c:if test="${pageCurrent != 1}">
-                                    <a href="service?pageNo=${pageCurrent - 1}"> Previous </a>
+                                <c:if test="${pageCurrent - 2 > 1}">
+                                    <a href="customer?pageNo=1"> First </a>
                                 </c:if>
                             </li>
-                            <c:forEach var="pageNo" begin="1" end="${totalPage}">
+                            <c:set var = "pageHead" value = "${pageCurrent - 2 > 1 ? pageCurrent - 2 : 1 }"/>
+                            <c:set var = "pageTail" value = "${pageCurrent + 2 < totalPage ? pageCurrent + 2 : totalPage }"/>
+                            <c:forEach var="pageNo" begin="${pageHead}" end="${pageTail}">
                                 <li class="page-item page
                                     <c:if test="${pageCurrent == pageNo}">
                                         active
                                     </c:if>">
-                                    <a href="service?pageNo=${pageNo}">
+                                    <a href="customer?pageNo=${pageNo}">
                                         ${pageNo}
                                     </a>
                                 </li>
                             </c:forEach> 
                             <li class="page-item page">
-                                <c:if test="${pageCurrent != totalPage}">
-                                    <a href="service?pageNo=${pageCurrent + 1}"> Next </a>
+                                <c:if test="${pageCurrent < totalPage - 2}">
+                                    <a href="customer?pageNo=${totalPage}"> Last </a>
                                 </c:if>
                             </li>
                         </ul>
@@ -186,24 +188,24 @@
                             Service Name: <input type="text" placeholder="Enter Name" name="name" required> <br>
 
                             Service Time: <input type="text" placeholder="Time" name="time" required> <br>
-             
+
                             Service Price: <input type="text" placeholder="Price" name="price" required> <br>
                             <div style="padding-top: 10px">
-                            Images: <input type="file" accept="image/png, image/jpeg, image/jpg" name="images"
-                                   style="color: transparent; border: none;">
+                                Images: <input type="file" accept="image/png, image/jpeg, image/jpg" name="images"
+                                               style="color: transparent; border: none;">
                             </div>
                             <div style="float: right">
-                            Services Type: <select name="type"> <br>
-                                <c:forEach items="${allType}" var="st">
-                                    <option value="${st.typeID}" 
-                                            <c:if test="${st.typeID 
-                                                          eq sessionScope.serviceModel.type.typeID}">
-                                                  selected
-                                            </c:if>>
-                                        ${st.typeName}
-                                    </option>
-                                </c:forEach>
-                            </select> 
+                                Services Type: <select name="type"> <br>
+                                    <c:forEach items="${allType}" var="st">
+                                        <option value="${st.typeID}" 
+                                                <c:if test="${st.typeID 
+                                                              eq sessionScope.serviceModel.type.typeID}">
+                                                      selected
+                                                </c:if>>
+                                            ${st.typeName}
+                                        </option>
+                                    </c:forEach>
+                                </select> 
                             </div>
                             <textarea name="description" cols="30" rows="10" placeholder="Write something..." style="width: 100%"></textarea>
                             <button class="btn"> Add </button>

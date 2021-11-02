@@ -37,7 +37,7 @@ public class ServicesDeleteControl extends HttpServlet {
         servDBC.delete(sid);
         String url = request.getHeader("Referer");
         response.sendRedirect(url);
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

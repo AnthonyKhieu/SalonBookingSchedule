@@ -106,12 +106,12 @@ public final class header_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <li class=\"nav-item\">\n");
       out.write("                    <a class=\"nav-link\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/contact\">Contact</a>\n");
+      out.write("/contactWeb\">Contact</a>\n");
       out.write("                </li>\n");
       out.write("                <li class=\"nav-item\">\n");
       out.write("                    <a class=\"nav-link\" href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/services\">Services</a>\n");
+      out.write("/servicesWeb\">Services</a>\n");
       out.write("                </li>\n");
       out.write("                <li class=\"nav-item\">\n");
       out.write("                    <a class=\"nav-link login\" href=\"");
@@ -126,9 +126,10 @@ public final class header_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("/images/big_image_1.jpg);\">\n");
       out.write("            <div class=\"container\">\n");
-      out.write("                            <iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/TJk-cBZdl1A?start=18\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>        \n");
+      out.write("                <div class=\"row align-items-center site-hero-inner justify-content-center\">\n");
       out.write("\n");
-      out.write("                    </div>\n");
+      out.write("                    <iframe width=\"100%\" height=\"500\" src=\"https://www.youtube.com/embed/TJk-cBZdl1A?autoplay=1;start=18\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>        \n");
+      out.write("\n");
       out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("        </section>\n");

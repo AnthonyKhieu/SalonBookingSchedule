@@ -13,19 +13,22 @@
         <meta name = "viewport" content="width=device-width, initial-scale=1.0">
         <title>JSP Page</title>
         <style>
-            .appoint{
+            input{
+                height: 50px;
+                border-radius: 20px;
                 margin: 30px auto;
-                width: 60%;
+                width: 50%;
             }
-            a{
+            input{
                 color: orange;
-                font-size: 25px;
-                padding-left: 10px;
+                font-size: 40px;
+                font-weight: bold;
             }
-            .appoint:hover{
-                background-color: #999999;
+            input:hover{
+                background-color: #009900;
                 letter-spacing: 2px;
-                color: wheat;
+                color: white;
+                transition: 0.5s;
             }
         </style>
     </head>
@@ -41,18 +44,21 @@
                 <img src="images/${s.images}" alt="images/default.jpg" style="width: 100%; height: auto;">
             </div>
             <div class="col-md-7">
-                <h1>${s.name}</h1>
-                <p>
-                    Price: ${s.price}$ 
-                    <br> 
-                    Time: ${s.time} min 
-                    <br>
+                <form action="appointmentWeb" method="post">
+                    <input type="hidden" value="${s.id}" name="picked">
+                    <h1>${s.name}</h1>
+                    <p>
+                        Type: ${s.type.typeName}
+                        <br>
+                        Price: ${s.price}$ 
+                        <br> 
+                        Time: ${s.time} min 
+                        <br>
                     <h3>Description</h3>
                     ${s.description}
-                </p>
-                <div class="appoint" style="border: 2px solid #0066cc; text-align: center">
-                    <a href="#">Appointment Now !</a>
-                </div>
+                    </p>
+                    <input type="submit" value="Book now!">
+                </form>
             </div>
         </div>
 

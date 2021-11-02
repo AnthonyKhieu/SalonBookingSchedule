@@ -43,7 +43,7 @@ public class CustomerController extends HttpServlet {
         }
         CustomerDBContext cusDBC = new CustomerDBContext();
         String pageNo = request.getParameter("pageNo");
-        if (pageNo == null) {
+        if (pageNo == null || pageNo.equals("0")) {
             pageNo = "1";
         }
         int pageCurrent = Integer.parseInt(pageNo);
@@ -53,6 +53,10 @@ public class CustomerController extends HttpServlet {
         int totalPage = totalRecord / rowPerPage;
         if (totalRecord % rowPerPage != 0) {
             totalPage++;
+        }
+        if(totalRecord == 0){
+            totalPage = 0;
+            pageCurrent = 0;
         }
         request.setAttribute("allCustomers", allCustomers);
         request.setAttribute("totalRecord", totalRecord);

@@ -35,7 +35,7 @@
 
     </head>
     <body>
-
+        <jsp:include page="adminHeader.jsp"></jsp:include>
         <div class="container-xl">
             <div class="table-responsive">
                 <div class="table-wrapper">
@@ -48,7 +48,7 @@
                             <div class="col-sm-6">
                                 <div class="search-box">
                                     <form action="employee" method="post">
-                                        Search Name <input type="text" name="searchName" class="form-control" placeholder="Search Name..."
+                                        Search Name <input type="text" name="searchName" class="form-control" placeholder="--All--"
                                                            <c:if test="${sessionScope.employeeModel.name != null}">
                                                                value="${sessionScope.employeeModel.name}"
                                                            </c:if>
@@ -62,25 +62,7 @@
                     </div>
                     <div class="hint-text"> <b> Total results : ${totalRecord}</b></div>
                     <div style="float: right">
-                        <button onclick="openForm()"> New employee </button>
-                    </div>
-                    <div class="form-popup" id="myForm" style="display: none; float: right">
-                        <form action="createEmployee" class="form-container" method="post">
-                            <label for="name"><b>Name</b></label>
-                            <input type="text" placeholder="Enter Name" name="name" required>
-
-                            <label for="insta"><b>Insta</b></label>
-                            <input type="text" placeholder="Instagram Link" name="insta" required>
-
-                            <label for="images"><b>Images</b></label>
-                            <input type="file" accept="image/png, image/jpeg, image/jpg" name="images"
-                                   style="color: transparent;">
-
-                            <label for="description"><b>Description</b></label>
-                            <input type="text" placeholder="Description" name="description" required>
-                            <button onclick="closeForm()" type="submit" class="btn"> Add </button>
-                            <button onclick="closeForm()" type="submit" class="btn"> Close </button>
-                        </form>
+                        <a href="#myForm" onclick="openForm()"> <h3> <b> New employee </b> </h3> </a>
                     </div>
                     <table class="table table-striped table-hover table-bordered">
                         <thead>
@@ -140,6 +122,23 @@
                                 </c:if>
                             </li>
                         </ul>
+                    </div>
+                    <!-- Insert form -->
+                    <div class="form-popup" id="myForm">
+                        <form action="createCustomer" class="form-container" method="post">
+                            <span onclick="closeForm()" style="float:right"> Close </span>
+                            <h2 style="text-align: center; color:  #00cc33"> Insert form </h2>
+
+                            Employee Name: <input type="text" placeholder="Name" name="name" required> <br>
+
+                            Employee Insta: <input type="text" placeholder="Instagram" name="insta" required> <br>
+
+                            Choose Images <input type="file" accept="image/png, image/jpeg, image/jpg" name="images"
+                                                 style="color: transparent;"> <br>
+                            <br>
+                            <textarea name="description" cols="30" rows="10" placeholder="Write something..." style="width: 100%"></textarea>
+                            <button class="btn"> Add </button>
+                        </form>
                     </div>
                 </div>
             </div>  

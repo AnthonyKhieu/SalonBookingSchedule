@@ -40,25 +40,25 @@
         </script>
     </head>
     <body>
-        
-        <div class="container-xl">
-            <div class="table-responsive">
-                <div class="table-wrapper">
-                    <div class="table-title">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <h2><a href="#">Home</a></h2>
-                                <h1>Customers <b>List</b></h1>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="search-box">
-                                    <form action="customer" method="post">
-                                        Search Name <input type="text" name="searchName" class="form-control" placeholder="Search Name..."
-                                                           <c:if test="${sessionScope.customerModel.name != null}">
-                                                               value="${sessionScope.customerModel.name}"
-                                                           </c:if>
-                                                           >
-                                        Search Phone <input type="text" name="searchPhone" class="form-control" placeholder="Search Phone..."
+        <jsp:include page="adminHeader.jsp"></jsp:include>
+            <div class="container-xl">
+                <div class="table-responsive">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h2><a href="#">Home</a></h2>
+                                    <h1>Customers <b>List</b></h1>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="search-box">
+                                        <form action="customer" method="post">
+                                            Search Name <input type="text" name="searchName" class="form-control" placeholder="--All--"
+                                            <c:if test="${sessionScope.customerModel.name != null}">
+                                                value="${sessionScope.customerModel.name}"
+                                            </c:if>
+                                            >
+                                        Search Phone <input type="text" name="searchPhone" class="form-control" placeholder="--All--"
                                                             <c:if test="${sessionScope.customerModel.phone != null}">
                                                                 value="${sessionScope.customerModel.phone}"
                                                             </c:if>
@@ -72,21 +72,7 @@
                     </div>
                     <div class="hint-text"> <b> Total results : ${totalRecord}</b></div>
                     <div style="float: right">
-                        <button onclick="openForm()"> New customer </button>
-                    </div>
-                    <div class="form-popup" id="myForm" style="display: none; float: right">
-                        <form action="createCustomer?cid=${c.id}" class="form-container">
-                            <label for="name"><b>Name</b></label>
-                            <input type="text" placeholder="Enter Name" name="name" required>
-
-                            <label for="phone"><b>Phone</b></label>
-                            <input type="text" placeholder="Enter Phone" name="phone" required>
-                            
-                            <label for="description"><b>Description</b></label>
-                            <input type="text" placeholder="Description" name="description" required>
-                            <button onclick="closeForm()" type="submit" class="btn"> Add </button>
-                            <button onclick="closeForm()" type="submit" class="btn"> Close </button>
-                        </form>
+                        <a href="#myForm" onclick="openForm()"> <h3> <b> New customer </b> </h3> </a>
                     </div>
                     <table class="table table-striped table-hover table-bordered">
                         <thead>
@@ -113,15 +99,18 @@
                         </c:forEach>
                         </tbody>
                     </table>
+                    <!-- Page -->
                     <div class="clearfix">
                         <div class="hint-text"> <b> Page ${pageCurrent} </b>  of <b>${totalPage}</b></div>
                         <ul class="pagination">
                             <li class="page-item page">
-                                <c:if test="${pageCurrent != 1}">
-                                    <a href="customer?pageNo=${pageCurrent - 1}"> Previous </a>
+                                <c:if test="${pageCurrent - 2 > 1}">
+                                    <a href="customer?pageNo=1"> First </a>
                                 </c:if>
                             </li>
-                            <c:forEach var="pageNo" begin="1" end="${totalPage}">
+                            <c:set var = "pageHead" value = "${pageCurrent - 2 > 1 ? pageCurrent - 2 : 1 }"/>
+                            <c:set var = "pageTail" value = "${pageCurrent + 2 < totalPage ? pageCurrent + 2 : totalPage }"/>
+                            <c:forEach var="pageNo" begin="${pageHead}" end="${pageTail}">
                                 <li class="page-item page
                                     <c:if test="${pageCurrent == pageNo}">
                                         active
@@ -132,11 +121,26 @@
                                 </li>
                             </c:forEach> 
                             <li class="page-item page">
-                                <c:if test="${pageCurrent != totalPage}">
-                                    <a href="customer?pageNo=${pageCurrent + 1}"> Next </a>
+                                <c:if test="${pageCurrent < totalPage - 2}">
+                                    <a href="customer?pageNo=${totalPage}"> Last </a>
                                 </c:if>
                             </li>
                         </ul>
+                    </div>
+                    <!-- Insert form -->
+                    <div class="form-popup" id="myForm">
+                        <form action="createCustomer" class="form-container" method="post">
+                            <span onclick="closeForm()" style="float:right"> Close </span>
+                            <h2 style="text-align: center; color:  #00cc33"> Insert form </h2>
+
+                            Customer Name: <input type="text" placeholder="Name" name="name" required> <br>
+
+                            Customer Phone: <input type="text" placeholder="Phone" name="phone" required> <br>
+
+                            <br>
+                            <textarea name="description" cols="30" rows="10" placeholder="Write something..." style="width: 100%"></textarea>
+                            <button class="btn"> Add </button>
+                        </form>
                     </div>
                 </div>
             </div>  

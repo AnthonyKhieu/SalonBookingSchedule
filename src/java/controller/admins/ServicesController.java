@@ -94,8 +94,14 @@ public class ServicesController extends HttpServlet {
         if (!searchTime.isEmpty()) {
             standard.setTime(Double.parseDouble(searchTime));
         }
+        else{
+            standard.setTime(0);
+        }
         if (!searchPrice.isEmpty()) {
             standard.setPrice(Double.parseDouble(searchPrice));
+        }
+        else{
+            standard.setPrice(0);
         }
         ServiceType st = new ServiceType();
         st.setTypeID(Integer.parseInt(searchType));

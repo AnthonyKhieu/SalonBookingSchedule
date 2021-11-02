@@ -17,13 +17,19 @@
     <body>
         <!-- Header -->
         <jsp:include page="header.jsp"></jsp:include>
-        
-        <!--Content-->
-        <section class="banner" id = "banner" style="background-image: url(${pageContext.request.contextPath}/images/home.jpg);">
+
+            <!--Content-->
+            <section class="banner" id = "banner" style="background-image: url(${pageContext.request.contextPath}/images/home.jpg);">
             <div class="content">
                 <h2> Man Choice </h2>
-                <p> Make your own style </p>
-                <a href="appointment.jsp" class="btn"> Appointment </a>
+                <form action="home" method="post">
+                    <input required type="text" name="clientPhone" placeholder="Your Phone Number..."
+                           <c:if test="${sessionScope.clientPhone != null}">
+                               value="${sessionScope.clientPhone}"
+                           </c:if>
+                           > <br>
+                    <input type="submit" class="btn" value="Appointment Now">
+                </form>
             </div>
         </section>
 

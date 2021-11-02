@@ -24,7 +24,9 @@
                     <ul class="list_Services">
                     <c:forEach items="${servType}" var="st">
                         <li>
-                            <a href="serviceTypeWeb?st_id=${st.typeID}">${st.typeName}</a>
+                            <a href="serviceTypeWeb?st_id=${st.typeID}">
+                                ${st.typeName}
+                            </a>
                         </li>
                     </c:forEach>
                 </ul>
@@ -61,7 +63,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>

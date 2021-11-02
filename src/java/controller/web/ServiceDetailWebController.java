@@ -34,6 +34,7 @@ public class ServiceDetailWebController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int sid = Integer.parseInt(request.getParameter("sid"));
+        
         ServiceDBContext servDBC = new ServiceDBContext();
         request.setAttribute("service", servDBC.getByID(sid));
         request.getRequestDispatcher("view/web/serviceDetail.jsp").forward(request, response);

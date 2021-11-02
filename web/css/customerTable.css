@@ -91,16 +91,18 @@ table.table td i {
     line-height: 30px;
     text-align: center;
     padding: 0;
+    margin-left: 3px;
+    
 }
 .pagination li a:hover {
     color: #666;
+    
 } 
 .pagination li.active a {
     border-bottom: 5px solid orange;
+    color: #33cc00; 
 }
-.pagination li.active a:hover {        
-    background: #0397d6;
-}
+
 .pagination li.disabled i {
     color: #ccc;
 }

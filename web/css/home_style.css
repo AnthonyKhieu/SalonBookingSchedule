@@ -1,7 +1,7 @@
 /*header.sticky{
-	background: lightblue;
-	padding: 10px 100px;
-	box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        background: lightblue;
+        padding: 10px 100px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
 }
 header.sticky .nav ul li{
     background: lightcyan;
@@ -17,11 +17,35 @@ header.sticky .nav ul li a:hover{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Trebuchet MS;
+    font-family: serif;
 
 }
-.content .btn{
-    color: white;
+
+.banner .content{
+    max-width: 900px;
+    text-align: center;
+}
+.banner .content h2{
+    font-size: 5em;
+    color: #00cc33;
+}
+.banner .content input{
+    width: 400px;
+    height: 60px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 25px;
+    color: #c4c702;
+}
+.banner .content input:focus{
+    border: 2px solid skyblue;
+    font-size: 30px;
+    letter-spacing: 1px;
+    transition: 0.5s;
+}
+.banner .content .btn{
+    width: 70%;
+    color: #0b0b0b;
     font-weight: bold;
     font-size: 1em;
     background: orange;
@@ -36,20 +60,7 @@ header.sticky .nav ul li a:hover{
     transition: 0.25s;
 
 }
-.content .btn:hover{
-    background-color: yellowgreen;
-    color: #663300;
-}
-.banner .content{
-    max-width: 900px;
-    text-align: center;
-}
-.banner .content h2{
-    font-size: 5em;
-    color: black;
-}
-.banner .content p{
-    background-color: black;
-    font-size: 2em;
-    color: #c4c702;
+.banner .content .btn:hover{
+    background-color:  #009900;
+    color: white;
 }
