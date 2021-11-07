@@ -5,6 +5,7 @@
  */
 package controller.admins;
 
+import controller.auth.BaseModelAuthentication;
 import dal.CustomerDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,7 +23,7 @@ import model.Customer;
  * @author Admin
  */
 @WebServlet(name = "CustomerController", urlPatterns = {"/admin/customer"})
-public class CustomerController extends HttpServlet {
+public class CustomerController extends BaseModelAuthentication {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -34,7 +35,7 @@ public class CustomerController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Customer standard = (Customer) session.getAttribute("customerModel");
@@ -74,7 +75,7 @@ public class CustomerController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Customer standard = (Customer) session.getAttribute("customerModel");

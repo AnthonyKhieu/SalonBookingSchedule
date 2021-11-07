@@ -5,6 +5,7 @@
  */
 package controller.admins;
 
+import controller.auth.BaseModelAuthentication;
 import dal.AppointmentDBContext;
 import dal.CustomerDBContext;
 import dal.EmployeeDBContext;
@@ -29,7 +30,7 @@ import model.ServiceType;
  * @author Admin
  */
 @WebServlet(name = "AppointmentCreateControl", urlPatterns = {"/admin/createAppointment"})
-public class AppointmentCreateControl extends HttpServlet {
+public class AppointmentCreateControl extends BaseModelAuthentication {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -92,7 +93,7 @@ public class AppointmentCreateControl extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -106,7 +107,7 @@ public class AppointmentCreateControl extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }

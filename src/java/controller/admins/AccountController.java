@@ -6,7 +6,7 @@
 package controller.admins;
 
 import controller.auth.BaseModelAuthentication;
-import dal.EmployeeDBContext;
+import dal.AccountDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,55 +14,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Employee;
 
 /**
  *
  * @author Admin
  */
-@WebServlet(name = "EmployeeUpdateController", urlPatterns = {"/admin/updateEmployee"})
-public class EmployeeUpdateController extends BaseModelAuthentication {
+@WebServlet(name = "AccountController", urlPatterns = {"/admin/account"})
+public class AccountController extends BaseModelAuthentication {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        int eid = Integer.parseInt(request.getParameter("eid"));
-        String name = request.getParameter("name");
-        String insta = request.getParameter("insta");
-        String old_images = request.getParameter("old_images");
-        String new_images = request.getParameter("new_images");
-        String description = request.getParameter("description");
-        Employee e = new Employee();
-        e.setId(eid);
-        if(name != null && !name.isEmpty()){
-            e.setName(name);
-        }
-        if(insta != null){
-            e.setInsta(insta);
-        }
-        if(description != null){
-            e.setDescription(description);
-        }
-        
-        if(new_images != null && new_images.length() != 0){
-            e.setImages(new_images);
-        }
-        else{
-            e.setImages(old_images);
-        }
-        
-        EmployeeDBContext empDBC = new EmployeeDBContext();
-        empDBC.update(e);
-        response.sendRedirect("employee");
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -76,7 +36,7 @@ public class EmployeeUpdateController extends BaseModelAuthentication {
     @Override
     protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("../view/admin/accountList").forward(request, response);
     }
 
     /**
@@ -90,7 +50,12 @@ public class EmployeeUpdateController extends BaseModelAuthentication {
     @Override
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        AccountDBContext accDBC = new AccountDBContext();
+        String username = request.getParameter("username");
+        String password = request.getParameter("username");
+        int role = Integer.parseInt(request.getParameter("role"));
+        accDBC.insert(username, password, role);
+        doGet(request, response);
     }
 
     /**

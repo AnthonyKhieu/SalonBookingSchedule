@@ -26,16 +26,16 @@
                 <form action="login" method="post">
                     <h2 class="text-center">Log in</h2>       
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="username" required name="username">
+                        <input type="text" class="form-control" placeholder="username" required name="username" value="${requestScope.username}">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="password" required name="password">
+                        <input type="password" class="form-control" placeholder="password" required name="password" value="${requestScope.password}">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block">Log in</button>
                     </div>
                     <div class="clearfix">
-                        <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
+                        <label class="float-left form-check-label"><input type="checkbox" name="remember"> Remember me</label>
                     </div>        
                 </form>
             </div>    

@@ -5,6 +5,8 @@
  */
 package controller.admins;
 
+import controller.auth.BaseModelAuthentication;
+import dal.AccountDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-@WebServlet(name = "ContactController", urlPatterns = {"/admin/contact"})
-public class ContactController extends HttpServlet {
+@WebServlet(name = "AccountCheckController", urlPatterns = {"/admin/checkAccount"})
+public class AccountCheckController extends BaseModelAuthentication {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,7 +33,19 @@ public class ContactController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        AccountDBContext accDBC = new AccountDBContext();
+        String username = request.getParameter("username");
+        boolean check = accDBC.isExist(username);
+        String mess = null;
+        if(check){
+            mess = "Account have already exist!";
+        }
+        else{
+            mess = "OK";
+        }
+        request.setAttribute("username", username);
+        request.setAttribute("message", mess);
+        request.getRequestDispatcher("../view/admin/accountList").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -44,7 +58,7 @@ public class ContactController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -58,7 +72,7 @@ public class ContactController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }

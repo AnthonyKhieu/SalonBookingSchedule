@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,6 +37,12 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Cookie[] cookies = request.getCookies();
+        if(cookies != null){
+            for(Cookie c : cookies){
+                request.setAttribute(c.getName(), c.getValue());
+            }
+        }
         request.getRequestDispatcher("view/web/login.jsp").forward(request, response);
     }
 
@@ -53,12 +60,21 @@ public class LoginController extends HttpServlet {
         HttpSession session = request.getSession();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String remember = request.getParameter("remember");
         AccountDBContext accDBC = new AccountDBContext();
         Account a = accDBC.getAccount(username, password);
         if(a != null){
+            if(remember != null){
+                Cookie uCookie = new Cookie("username", username);
+                Cookie pCookie = new Cookie("password", password);
+                uCookie.setMaxAge(7 * 24 * 3600);
+                pCookie.setMaxAge(7 * 24 * 3600);
+                response.addCookie(uCookie);
+                response.addCookie(pCookie);
+            }
             session.setAttribute("account", a);
         }
-        response.sendRedirect("admin/customer");
+        response.sendRedirect("admin/appointment");
     }
 
     /**

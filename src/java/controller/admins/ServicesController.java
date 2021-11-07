@@ -5,6 +5,7 @@
  */
 package controller.admins;
 
+import controller.auth.BaseModelAuthentication;
 import dal.ServiceDBContext;
 import dal.ServiceTypeDBContext;
 import java.io.IOException;
@@ -24,7 +25,7 @@ import model.ServiceType;
  * @author Admin
  */
 @WebServlet(name = "ServicesListController", urlPatterns = {"/admin/service"})
-public class ServicesController extends HttpServlet {
+public class ServicesController extends BaseModelAuthentication {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -36,7 +37,7 @@ public class ServicesController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Service standard = (Service) session.getAttribute("serviceModel");
@@ -81,7 +82,7 @@ public class ServicesController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Service standard = (Service) session.getAttribute("serviceModel");

@@ -5,6 +5,7 @@
  */
 package controller.admins;
 
+import controller.auth.BaseModelAuthentication;
 import dal.EmployeeDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,7 +21,7 @@ import model.Employee;
  * @author Admin
  */
 @WebServlet(name = "EmployeeCreateController", urlPatterns = {"/admin/createEmployee"})
-public class EmployeeCreateController extends HttpServlet {
+public class EmployeeCreateController extends BaseModelAuthentication {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,7 +58,7 @@ public class EmployeeCreateController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -71,7 +72,7 @@ public class EmployeeCreateController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }

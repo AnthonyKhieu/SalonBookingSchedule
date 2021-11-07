@@ -5,6 +5,7 @@
  */
 package controller.admins;
 
+import controller.auth.BaseModelAuthentication;
 import dal.AppointmentDBContext;
 import dal.EmployeeDBContext;
 import java.io.IOException;
@@ -26,7 +27,7 @@ import model.Employee;
  * @author Admin
  */
 @WebServlet(name = "AppointmentController", urlPatterns = {"/admin/appointment"})
-public class AppointmentController extends HttpServlet {
+public class AppointmentController extends BaseModelAuthentication {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -38,7 +39,7 @@ public class AppointmentController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Appointment standard = (Appointment) session.getAttribute("appointmentModel");
@@ -81,7 +82,7 @@ public class AppointmentController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Appointment standard = (Appointment) session.getAttribute("appointmentModel");

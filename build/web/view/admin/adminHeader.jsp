@@ -41,9 +41,6 @@
     <body>
         <ul class="nav flex-column flex-sm-row justify-content-center headerBar">
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/home">Home</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/admin/customer">Customers</a>
             </li>
             <li class="nav-item">
@@ -56,7 +53,7 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/admin/appointment">Appointments</a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/admin/accounts">Accounts</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/admin/account">Accounts</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link login" href="${pageContext.request.contextPath}/logout" 
@@ -64,7 +61,7 @@
             </li>
         </ul> 
         <div class="info">
-            <b> Welcome </b> <span> Your info </span>
+            <b> Welcome </b> <span> ${sessionScope.account.username} </span>
         </div>
     </body>
 </html>

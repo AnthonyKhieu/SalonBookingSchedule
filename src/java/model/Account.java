@@ -5,25 +5,36 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Admin
  */
-public class Account extends AbsModel{
-    private String username;
-    private String password;
-    private int role;
+public class Account {
+    private String username, password;
+    private ArrayList<Feature> features = new ArrayList<>();
 
+    public ArrayList<Feature> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(ArrayList<Feature> features) {
+        this.features = features;
+    }
+
+    
     public Account() {
     }
 
-    public Account(String username, String password, int role) {
+    public Account(String username, String password) {
         this.username = username;
         this.password = password;
-        this.role = role;
+
     }
 
 
+    
     public String getUsername() {
         return username;
     }
@@ -38,14 +49,6 @@ public class Account extends AbsModel{
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
     }
     
 }
