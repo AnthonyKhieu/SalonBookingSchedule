@@ -27,7 +27,7 @@
         </script>
     </head>
     <body>
-        <jsp:include page="adminHeader.jsp"></jsp:include>
+        <jsp:include page="${pageContext.request.contextPath}/adminHeader.jsp"></jsp:include>
             <div class="container-xl">
                 <div class="table-responsive">
                     <div class="table-wrapper">
@@ -36,7 +36,7 @@
                                 <div class="col-sm-6"><h1>Contact <b>Details</b></h1></div>
                                 <div class="col-sm-6">
                                     <div class="search-box">
-                                        <form action="customer" method="post">
+                                        <form action="${pageContext.request.contextPath}/admin/customer" method="post">
                                             Search by Name <input type="text" name="searchName" class="form-control" placeholder="Search Name..."
                                             <c:if test="${sessionScope.searchModel.name != null}">
                                                 value="${sessionScope.searchModel.name}"

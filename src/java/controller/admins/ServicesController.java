@@ -23,7 +23,7 @@ import model.ServiceType;
  *
  * @author Admin
  */
-@WebServlet(name = "ServicesListController", urlPatterns = {"/service"})
+@WebServlet(name = "ServicesListController", urlPatterns = {"/admin/service"})
 public class ServicesController extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -56,6 +56,10 @@ public class ServicesController extends HttpServlet {
         if (totalRecord % rowPerPage != 0) {
             totalPage++;
         }
+        if (totalRecord == 0) {
+            totalPage = 0;
+            pageCurrent = 0;
+        }
         ServiceTypeDBContext servTypeDBC = new ServiceTypeDBContext();
         ServiceType st_standard = new ServiceType();
         ArrayList<ServiceType> allType = servTypeDBC.getAll(servTypeDBC.getSize(st_standard));
@@ -65,7 +69,7 @@ public class ServicesController extends HttpServlet {
         request.setAttribute("totalRecord", totalRecord);
         request.setAttribute("pageCurrent", pageCurrent);
         request.setAttribute("totalPage", totalPage);
-        request.getRequestDispatcher("view/admin/serviceList.jsp").forward(request, response);
+        request.getRequestDispatcher("../view/admin/serviceList.jsp").forward(request, response);
     }
 
     /**
@@ -93,14 +97,12 @@ public class ServicesController extends HttpServlet {
         standard.setName(searchName.trim());
         if (!searchTime.isEmpty()) {
             standard.setTime(Double.parseDouble(searchTime));
-        }
-        else{
+        } else {
             standard.setTime(0);
         }
         if (!searchPrice.isEmpty()) {
             standard.setPrice(Double.parseDouble(searchPrice));
-        }
-        else{
+        } else {
             standard.setPrice(0);
         }
         ServiceType st = new ServiceType();

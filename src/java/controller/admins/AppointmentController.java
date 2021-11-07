@@ -5,46 +5,28 @@
  */
 package controller.admins;
 
+import dal.AppointmentDBContext;
+import dal.EmployeeDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Appointment;
+import model.Customer;
+import model.Employee;
 
 /**
  *
  * @author Admin
  */
-@WebServlet(name = "AppointmentController", urlPatterns = {"/appointment"})
+@WebServlet(name = "AppointmentController", urlPatterns = {"/admin/appointment"})
 public class AppointmentController extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AppointmentController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AppointmentController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -58,7 +40,36 @@ public class AppointmentController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        Appointment standard = (Appointment) session.getAttribute("appointmentModel");
+        if (standard == null) {
+            standard = new Appointment();
+        }
+        String pageNo = request.getParameter("pageNo");
+        if (pageNo == null) {
+            pageNo = "1";
+        }
+        AppointmentDBContext aptDBC = new AppointmentDBContext();
+        EmployeeDBContext empDBC = new EmployeeDBContext();
+        Employee e = new Employee();
+        int pageCurrent = Integer.parseInt(pageNo);
+        int rowPerPage = 5;
+        ArrayList<Appointment> allAppointments = aptDBC.paginateGetting(pageCurrent, rowPerPage, standard);
+        int totalRecord = aptDBC.getSize(standard);
+        int totalPage = totalRecord / rowPerPage;
+        if (totalRecord % rowPerPage != 0) {
+            totalPage++;
+        }
+        if (totalRecord == 0) {
+            totalPage = 0;
+            pageCurrent = 0;
+        }
+        request.setAttribute("allAppointments", allAppointments);
+        request.setAttribute("allEmployees", empDBC.getAll(empDBC.getSize(e)));
+        request.setAttribute("totalRecord", totalRecord);
+        request.setAttribute("pageCurrent", pageCurrent);
+        request.setAttribute("totalPage", totalPage);
+        request.getRequestDispatcher("../view/admin/appointmentList.jsp").forward(request, response);
     }
 
     /**
@@ -72,7 +83,32 @@ public class AppointmentController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        Appointment standard = (Appointment) session.getAttribute("appointmentModel");
+        if (standard == null) {
+            standard = new Appointment();
+        }
+        String searchCustomer = request.getParameter("searchCustomer");
+        String searchEmployee = request.getParameter("searchEmployee");
+        String searchDate = request.getParameter("searchDate");
+
+        Customer c = new Customer();
+        c.setName(searchCustomer);
+        standard.setCustomer(c);
+
+        Employee e = new Employee();
+        e.setId(Integer.parseInt(searchEmployee));
+        standard.setEmployee(e);
+
+        if (!searchDate.isEmpty()) {
+            standard.setDate(Date.valueOf(searchDate));
+        }
+        else{
+            standard.setDate(null);
+        }
+
+        session.setAttribute("appointmentModel", standard);
+        doGet(request, response);
     }
 
     /**

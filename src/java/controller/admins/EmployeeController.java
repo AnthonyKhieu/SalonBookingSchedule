@@ -20,7 +20,7 @@ import model.Employee;
  *
  * @author Admin
  */
-@WebServlet(name = "EmployeeController", urlPatterns = {"/employee"})
+@WebServlet(name = "EmployeeController", urlPatterns = {"/admin/employee"})
 public class EmployeeController extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -57,7 +57,7 @@ public class EmployeeController extends HttpServlet {
         request.setAttribute("totalRecord", totalRecord);
         request.setAttribute("pageCurrent", pageCurrent);
         request.setAttribute("totalPage", totalPage);
-        request.getRequestDispatcher("view/admin/employeeList.jsp").forward(request, response);
+        request.getRequestDispatcher("../view/admin/employeeList.jsp").forward(request, response);
     }
 
     /**

@@ -21,7 +21,7 @@ import model.Customer;
  *
  * @author Admin
  */
-@WebServlet(name = "CustomerController", urlPatterns = {"/customer"})
+@WebServlet(name = "CustomerController", urlPatterns = {"/admin/customer"})
 public class CustomerController extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,7 +62,7 @@ public class CustomerController extends HttpServlet {
         request.setAttribute("totalRecord", totalRecord);
         request.setAttribute("pageCurrent", pageCurrent);
         request.setAttribute("totalPage", totalPage);
-        request.getRequestDispatcher("view/admin/customerList.jsp").forward(request, response);
+        request.getRequestDispatcher("../view/admin/customerList.jsp").forward(request, response);
     }
 
     /**

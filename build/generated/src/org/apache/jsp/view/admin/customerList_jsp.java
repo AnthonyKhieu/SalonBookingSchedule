@@ -110,7 +110,9 @@ public final class customerList_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("                                </div>\n");
       out.write("                                <div class=\"col-sm-6\">\n");
       out.write("                                    <div class=\"search-box\">\n");
-      out.write("                                        <form action=\"customer\" method=\"post\">\n");
+      out.write("                                        <form action=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/admin/customer\" method=\"post\">\n");
       out.write("                                            Search Name <input type=\"text\" name=\"searchName\" class=\"form-control\" placeholder=\"--All--\"\n");
       out.write("                                            ");
       if (_jspx_meth_c_if_0(_jspx_page_context))
@@ -188,7 +190,9 @@ public final class customerList_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("                    </div>\n");
       out.write("                    <!-- Insert form -->\n");
       out.write("                    <div class=\"form-popup\" id=\"myForm\">\n");
-      out.write("                        <form action=\"createCustomer\" class=\"form-container\" method=\"post\">\n");
+      out.write("                        <form action=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/admin/createCustomer\" class=\"form-container\" method=\"post\">\n");
       out.write("                            <span onclick=\"closeForm()\" style=\"float:right\"> Close </span>\n");
       out.write("                            <h2 style=\"text-align: center; color:  #00cc33\"> Insert form </h2>\n");
       out.write("\n");
@@ -296,7 +300,9 @@ public final class customerList_jsp extends org.apache.jasper.runtime.HttpJspBas
         do {
           out.write("\n");
           out.write("                                <tr>\n");
-          out.write("                            <form method=\"post\" action=\"updateCustomer?cid=");
+          out.write("                            <form method=\"post\" action=\"");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("/admin/updateCustomer?cid=");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${c.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("\">\n");
           out.write("                                <td><input type=\"text\" name=\"name\" value=\"");
@@ -310,7 +316,9 @@ public final class customerList_jsp extends org.apache.jasper.runtime.HttpJspBas
           out.write("\" required></td>\n");
           out.write("                                <td>\n");
           out.write("                                    <button class=\"edit\" title=\"Save\" data-toggle=\"tooltip\"><i class=\"material-icons\">&#10003;</i></button>\n");
-          out.write("                                    <a href=\"deleteCustomer?cid=");
+          out.write("                                    <a href=\"");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("/admin/deleteCustomer?cid=");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${c.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("\" class=\"delete\" title=\"Delete\" data-toggle=\"tooltip\"><i class=\"material-icons\">&#10007;</i></a>\n");
           out.write("                                </td>\n");
@@ -349,7 +357,9 @@ public final class customerList_jsp extends org.apache.jasper.runtime.HttpJspBas
     if (_jspx_eval_c_if_2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\n");
-        out.write("                                    <a href=\"customer?pageNo=1\"> First </a>\n");
+        out.write("                                    <a href=\"");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("/admin/customer?pageNo=1\"> First </a>\n");
         out.write("                                ");
         int evalDoAfterBody = _jspx_th_c_if_2.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
@@ -424,7 +434,9 @@ public final class customerList_jsp extends org.apache.jasper.runtime.HttpJspBas
           if (_jspx_meth_c_if_3((javax.servlet.jsp.tagext.JspTag) _jspx_th_c_forEach_1, _jspx_page_context, _jspx_push_body_count_c_forEach_1))
             return true;
           out.write("\">\n");
-          out.write("                                    <a href=\"customer?pageNo=");
+          out.write("                                    <a href=\"");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("/admin/customer?pageNo=");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageNo}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write("\">\n");
           out.write("                                        ");
@@ -493,7 +505,9 @@ public final class customerList_jsp extends org.apache.jasper.runtime.HttpJspBas
     if (_jspx_eval_c_if_4 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\n");
-        out.write("                                    <a href=\"customer?pageNo=");
+        out.write("                                    <a href=\"");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("/admin/customer?pageNo=");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${totalPage}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("\"> Last </a>\n");
         out.write("                                ");

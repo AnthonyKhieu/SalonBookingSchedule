@@ -20,7 +20,7 @@ import model.ServiceType;
  *
  * @author Admin
  */
-@WebServlet(name = "ServicesUpdateControl", urlPatterns = {"/updateServices"})
+@WebServlet(name = "ServicesUpdateControl", urlPatterns = {"/admin/updateServices"})
 public class ServicesUpdateControl extends HttpServlet {
 
     /**

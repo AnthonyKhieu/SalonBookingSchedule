@@ -1,0 +1,59 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 7, 2021, 2:53:29 PM
+    Author     : Admin
+*/
+.form-popup{
+    margin: 10px auto;
+    width:545px;
+    background:#FFFFFF;
+    border:1px solid #000;
+    padding:0;
+    z-index:999;
+    cursor:default;   
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;   
+    vertical-align: middle;
+    margin-left:auto; 
+    margin-right:auto;
+    text-align: center;
+}
+.form-popup input{
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid black;
+    overflow: hidden;
+    padding-top: 10px;
+    
+}
+.form-popup .btn{
+    margin-left: 0;
+}
+.form-popup span{
+    margin: 0;
+    float: right;
+    background-color: black;
+    color: white;
+    width: 70px;
+    height: 30px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
+.form-popup span:hover{
+    background-color: red;
+}
+.form-popup .btn{
+    width: 100px;
+    border: 2px solid orange;
+}
+.form-popup .btn:hover{
+    background-color: greenyellow;
+}
+

@@ -28,7 +28,7 @@ import model.ServiceType;
  *
  * @author Admin
  */
-@WebServlet(name = "AppointmentCreateControl", urlPatterns = {"/createAppointment"})
+@WebServlet(name = "AppointmentCreateControl", urlPatterns = {"/admin/createAppointment"})
 public class AppointmentCreateControl extends HttpServlet {
 
     /**
@@ -43,7 +43,7 @@ public class AppointmentCreateControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        HashMap<ServiceType, Service> bookingMap = (HashMap<ServiceType, Service>) session.getAttribute("bookingServices");
+        HashMap<Integer, Service> bookingMap = (HashMap<Integer, Service>) session.getAttribute("bookingServices");
         CustomerDBContext cusDBC = new CustomerDBContext();
         EmployeeDBContext empDBC = new EmployeeDBContext();
         AppointmentDBContext aptDBC = new AppointmentDBContext();
@@ -56,27 +56,27 @@ public class AppointmentCreateControl extends HttpServlet {
             c.setPhone(clientPhone);
             cusDBC.insert(c);
         }
-
-        int eid = Integer.parseInt(request.getParameter("eid"));
+        int eid = (int) session.getAttribute("eid");
         Employee e = empDBC.getByID(eid);
-
-        Date date = Date.valueOf(request.getParameter("date"));
-
+        
+        Date date = (Date) session.getAttribute("date");
+        
+        double totalTime = 0;
         double fromHour = Double.parseDouble(request.getParameter("fromHour"));
-        double toHour = Double.parseDouble(request.getParameter("toHour"));
-
         String description = request.getParameter("description");
         
         Appointment a = new Appointment();
         a.setCustomer(c);
         a.setEmployee(e);
         a.setFromHour(fromHour);
-        a.setToHour(toHour);
         a.setDate(date);
         a.setDescription(description);
-        for(ServiceType st : bookingMap.keySet()){
-            a.getServices().add(bookingMap.get(st));
+        for(int typeID : bookingMap.keySet()){
+            a.getServices().add(bookingMap.get(typeID));
         }
+        double toHour = fromHour + totalTime;
+        a.setToHour(toHour);
+        
         aptDBC.insert(a);
         String url = request.getHeader("Referer");
         response.sendRedirect(url);

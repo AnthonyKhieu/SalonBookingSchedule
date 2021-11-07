@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-@WebServlet(name = "ContactController", urlPatterns = {"/contact"})
+@WebServlet(name = "ContactController", urlPatterns = {"/admin/contact"})
 public class ContactController extends HttpServlet {
 
     /**

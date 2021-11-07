@@ -5,17 +5,22 @@
  */
 package dal;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Appointment;
 import model.Customer;
 import model.Employee;
 import model.Service;
+import model.ServiceType;
 
 /**
  *
@@ -28,7 +33,7 @@ public class AppointmentDBContext extends DBContext implements AbsDBC<Appointmen
         try {
             connection.setAutoCommit(false);
             /*Insert into Appointment table*/
-            String query1 = "Insert into Appointment \n"
+            String query1 = "Insert into Appointment\n"
                     + "values(?, ?, ?, ?, ?, ?)";
             PreparedStatement ps1 = connection.prepareStatement(query1);
             ps1.setInt(1, a.getEmployee().getId());
@@ -162,23 +167,31 @@ public class AppointmentDBContext extends DBContext implements AbsDBC<Appointmen
     @Override
     public Appointment getByID(int id) {
         try {
-            String query = "Select * from Appointment where appointmentID = ?";
+            String query = "Select * from Appointment a\n"
+                    + "inner join Customers c on a.customerID = c.customerID\n"
+                    + "inner join Employees e on a.employeeID = e.employeeID\n"
+                    + "where a.appointmentID = ?";
             PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Appointment a = new Appointment();
                 a.setId(rs.getInt("appointmentID"));
                 Employee e = new Employee();
                 e.setId(rs.getInt("employeeID"));
+                e.setName(rs.getString("employeeName"));
                 a.setEmployee(e);
                 Customer c = new Customer();
                 c.setId(rs.getInt("customerID"));
+                c.setName(rs.getString("customerName"));
+                c.setPhone(rs.getString("phone"));
                 a.setCustomer(c);
                 a.setDate(rs.getDate("appointmentDate"));
                 a.setDescription(rs.getString("description"));
                 a.setFromHour(rs.getDouble("fromHour"));
                 a.setToHour(rs.getDouble("toHour"));
-
+                a.setServices(this.getAppointmentServices(id));
+                return a;
             }
         } catch (SQLException ex) {
             Logger.getLogger(AppointmentDBContext.class
@@ -215,32 +228,204 @@ public class AppointmentDBContext extends DBContext implements AbsDBC<Appointmen
         }
         return list;
     }
-    
+
     @Override
     public int getSize(Appointment standard) {
+        try {
+            String query1 = "Select count(*) as total\n"
+                    + "from Appointment a \n"
+                    + "inner join Customers c on a.customerID = c.customerID\n"
+                    + "inner join Employees e on a.employeeID = e.employeeID\n"
+                    + "where (1=1)\n";
+            ArrayList<Object> conditions = new ArrayList<>();
+            if (standard.getId() != 0) {
+                query1 += "and a.appointmentID = ?\n";
+                conditions.add(standard.getId());
+            }
+            if (standard.getCustomer() != null && !standard.getCustomer().getName().isEmpty()) {
+                query1 += "and c.customerName like '%' + ? + '%'\n";
+                conditions.add(standard.getCustomer().getName());
+            }
+            if (standard.getEmployee() != null && standard.getEmployee().getId() != 0) {
+                query1 += "and e.employeeID = ?\n";
+                conditions.add(standard.getEmployee().getId());
+            }
+            if (standard.getDate() != null) {
+                query1 += "and a.appointmentDate = ?\n";
+                conditions.add(standard.getDate());
+            }
+            PreparedStatement ps1 = connection.prepareStatement(query1);
+            int i = 1;
+            for (; i <= conditions.size(); i++) {
+                Object o = conditions.get(i - 1);
+                if (o instanceof Integer) {
+                    ps1.setInt(i, (int) o);
+                } else if (o instanceof String) {
+                    ps1.setString(i, (String) o);
+                } else if (o instanceof Double) {
+                    ps1.setDouble(i, (double) o);
+                } else {
+                    ps1.setDate(i, (Date) o);
+                }
+            }
+            ResultSet rs1 = ps1.executeQuery();
+            if (rs1.next()) {
+                return rs1.getInt("total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AppointmentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return 0;
     }
 
     @Override
-    public ArrayList<Appointment> paginateGetting(int page, int row, Appointment standard) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Appointment> paginateGetting(int pageCurrent, int rowPerPage, Appointment standard) {
+        ArrayList<Appointment> list = new ArrayList<>();
+        try {
+            String query1 = "Select e.employeeID, e.employeeName,  c.customerID, c.customerName, a.appointmentID, a.employeeID, \n"
+                    + "a.customerID, a.appointmentDate, a.fromHour, a.toHour, a.description \n"
+                    + "from Appointment a \n"
+                    + "inner join Customers c on a.customerID = c.customerID\n"
+                    + "inner join Employees e on a.employeeID = e.employeeID\n"
+                    + "where (1=1)\n";
+            ArrayList<Object> conditions = new ArrayList<>();
+            if (standard.getId() != 0) {
+                query1 += "and a.appointmentID = ?\n";
+                conditions.add(standard.getId());
+            }
+            if (standard.getCustomer() != null && !standard.getCustomer().getName().isEmpty()) {
+                query1 += "and c.customerName like '%' + ? + '%'\n";
+                conditions.add(standard.getCustomer().getName());
+            }
+            if (standard.getEmployee() != null && standard.getEmployee().getId() != 0) {
+                query1 += "and e.employeeID = ?\n";
+                conditions.add(standard.getEmployee().getId());
+            }
+            if (standard.getDate() != null) {
+                query1 += "and a.appointmentDate = ?\n";
+                conditions.add(standard.getDate());
+            }
+            query1 += "order by a.appointmentDate asc, a.fromHour asc, e.employeeID asc\n"
+                    + "offset (? - 1) * ? rows\n"
+                    + "fetch next ? rows only";
+       
+            PreparedStatement ps1 = connection.prepareStatement(query1);
+            int i = 1;
+            for (; i <= conditions.size(); i++) {
+                Object o = conditions.get(i - 1);
+                if (o instanceof Integer) {
+                    ps1.setInt(i, (int) o);
+                } else if (o instanceof String) {
+                    ps1.setString(i, (String) o);
+                } else if (o instanceof Double) {
+                    ps1.setDouble(i, (double) o);
+                } else {
+                    ps1.setDate(i, (Date) o);
+                }
+            }
+            ps1.setInt(i++, pageCurrent);
+            ps1.setInt(i++, rowPerPage);
+            ps1.setInt(i++, rowPerPage);
+            ResultSet rs1 = ps1.executeQuery();
+            while (rs1.next()) {
+                Appointment a = new Appointment();
+                a.setId(rs1.getInt("appointmentID"));
+                Customer c = new Customer();
+                c.setId(rs1.getInt("customerID"));
+                c.setName(rs1.getString("customerName"));
+                a.setCustomer(c);
+                Employee e = new Employee();
+                e.setId(rs1.getInt("employeeID"));
+                e.setName(rs1.getString("employeeName"));
+                a.setEmployee(e);
+                a.setFromHour(rs1.getDouble("fromHour"));
+                a.setToHour(rs1.getDouble("toHour"));
+                a.setDate(rs1.getDate("appointmentDate"));
+                a.setDescription(rs1.getString("description"));
+                a.setServices(this.getAppointmentServices(a.getId()));
+                list.add(a);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AppointmentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
-    
-//    public ArrayList<Double> getAvailableTime(double totalTime, Time today){
-//        ArrayList<Double> todaySchedule = new ArrayList<>();
-//        try {
-//            ArrayList<Double> availableHour = new ArrayList<>();
-//            String query = "Select fromHour from Appointment";
-//            PreparedStatement ps = connection.prepareStatement(query);
-//            ResultSet rs = ps.executeQuery();
-//            while(rs.next()){
-//                availableHour.add(rs.getDouble("fromHour"));
-//            }
-//            
-//        } catch (SQLException ex) {
-//            Logger.getLogger(AppointmentDBContext.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//        
-//    }
+
+    public ArrayList<Service> getAppointmentServices(int aid) {
+        ArrayList<Service> list = new ArrayList<>();
+        try {
+            String query = "Select s.serviceID, s.serviceName, s.time, s.price, s.typeID from AppointmentDetail ad\n"
+                    + "inner join Services s on ad.serviceID = s.serviceID where ad.appointmentID = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, aid);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Service s = new Service();
+                s.setId(rs.getInt("serviceID"));
+                s.setName(rs.getString("serviceName"));
+                s.setTime(rs.getDouble("time"));
+                s.setPrice(rs.getDouble("price"));
+                ServiceType st = new ServiceType();
+                st.setTypeID(rs.getInt("typeID"));
+                s.setType(st);
+                list.add(s);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AppointmentDBContext.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    public ArrayList<Double> getAvailableTime(double totalTime, Date picked, int eid) {
+        ArrayList<Double> validTime = new ArrayList<>();
+        ArrayList<String> bookedTime = new ArrayList<>();
+        /*
+            8    12-15   16-18     22
+         */
+        try {
+            String query = "Select a.fromHour, a.toHour\n"
+                    + "from Appointment a\n"
+                    + "where a.appointmentDate = ? and a.employeeID = ?\n"
+                    + "order by a.fromHour asc";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setDate(1, picked);
+            ps.setInt(2, eid);
+            ResultSet rs = ps.executeQuery();
+            double fromHour, toHour;
+            while (rs.next()) {
+                fromHour = rs.getDouble("fromHour");
+                toHour = rs.getDouble("toHour");
+                bookedTime.add(fromHour + "_" + toHour);
+            }
+            double start = 8;
+            LocalDate today = LocalDate.now();
+            LocalTime now = LocalTime.now();
+            if (today.isEqual(picked.toLocalDate())) {
+                if (now.getHour() >= 8) {
+                    start = Math.ceil(now.getHour() + now.getMinute() / 60.0);
+                }
+            }
+            double end = 22;
+            for (String s : bookedTime) {
+                String[] time = s.split("_");
+                double booked_From = Double.parseDouble(time[0]);
+                double booker_To = Double.parseDouble(time[1]);
+                while (start + totalTime <= booked_From) {
+                    validTime.add(start);
+                    start += 0.5;
+                }
+                start = booker_To;
+            }
+            while (start + totalTime <= end) {
+                validTime.add(start);
+                start += 0.5;
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AppointmentDBContext.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+        return validTime;
+    }
 }

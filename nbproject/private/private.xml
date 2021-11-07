@@ -2,6 +2,20 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/controller/admins/AppointmentCreateControl.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/controller/admins/AppointmentController.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/web/view/admin/appointmentList.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/model/Appointment.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/test/Test.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/web/view/admin/accountList.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/web/view/admin/employeeList.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/controller/admins/AppointmentUpdateControl.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/controller/admins/AppointmentDeleteControl.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/web/view/admin/customerList.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/controller/admins/CustomerCreateControl.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/controller/admins/CustomerController.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/PRJ301_Assignment/src/java/controller/admins/EmployeeController.java</file>
+        </group>
     </open-files>
 </project-private>

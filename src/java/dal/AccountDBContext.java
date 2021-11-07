@@ -17,9 +17,8 @@ import model.Account;
  *
  * @author Admin
  */
-public class AccountDBContext extends DBContext implements AbsDBC<Account> {
+public class AccountDBContext extends DBContext{
 
-    @Override
     public void insert(Account a) {
         try {
             String query = "Insert into Account values(?, ?, ?)";
@@ -33,7 +32,6 @@ public class AccountDBContext extends DBContext implements AbsDBC<Account> {
         }
     }
 
-    @Override
     public void update(Account a) {
         try {
             String query = "Update Account SET\n"
@@ -48,10 +46,9 @@ public class AccountDBContext extends DBContext implements AbsDBC<Account> {
         }
     }
 
-    @Override
     public void delete(int aid) {
         try {
-            String query = "Delete from Account where accountID = ?";
+            String query = "Delete from Account where username = ?";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, aid);
             ps.executeUpdate();
@@ -60,38 +57,23 @@ public class AccountDBContext extends DBContext implements AbsDBC<Account> {
         }
     }
 
-    @Override
-    public Account getByID(int id) {
+
+    public Account getAccount(String username, String password) {
         try {
-            String query = "Select * from Account where accountID = ?";
+            String query = "Select * from Account where username = ? and password = ?";
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, id);
+            ps.setString(1, username);
+            ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 Account a = new Account();
-                a.setId(id);
-                a.setUsername("username");
+                a.setUsername(rs.getString("username"));
+                a.setPassword(rs.getString("password"));
+                return a;
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServiceDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-
-    @Override
-    public ArrayList<Account> getAll(int number) {
-        return null;
-    }
-
-
-    @Override
-    public int getSize(Account standard) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<Account> paginateGetting(int page, int row, Account standard) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

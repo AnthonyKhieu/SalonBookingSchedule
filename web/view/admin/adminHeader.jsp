@@ -44,22 +44,19 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/home">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/customer">Customers</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/admin/customer">Customers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/employee">Employees</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/admin/employee">Employees</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/service">Services</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/admin/service">Services</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contacts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/appointment">Appointments</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/admin/appointment">Appointments</a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/accounts">Accounts</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/admin/accounts">Accounts</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link login" href="${pageContext.request.contextPath}/logout" 

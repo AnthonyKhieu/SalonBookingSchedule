@@ -12,6 +12,8 @@ import dal.ServiceDBContext;
 import dal.ServiceTypeDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.ServletException;
@@ -58,13 +60,15 @@ public class AppointmnetWebController extends HttpServlet {
             EmployeeDBContext empDBC = new EmployeeDBContext();
             AppointmentDBContext aptDBC = new AppointmentDBContext();
             ServiceTypeDBContext servTypeDBC = new ServiceTypeDBContext();
-
+            
+            LocalDate currentDate = LocalDate.now();
             Customer c = cusDBC.getByPhoneNumber(clientPhone);
 
             ServiceType st_standard = new ServiceType();
             ArrayList<ServiceType> allType = servTypeDBC.getAll(servTypeDBC.getSize(st_standard));
             request.setAttribute("serviceType", allType);
             Employee e = new Employee();
+            session.setAttribute("currentDate", currentDate);
             session.setAttribute("clientName", c == null ? null : c.getName());
             session.setAttribute("employeeList", empDBC.getAll(empDBC.getSize(e)));
             session.setAttribute("bookingServices", bookingMap);

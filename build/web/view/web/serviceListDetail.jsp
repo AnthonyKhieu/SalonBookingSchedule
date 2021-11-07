@@ -79,8 +79,11 @@
             <h2>${requestScope.serviceType.typeName}</h2>
 
         <div class="search-box">
-            <form action="#" method="post">
-                <input type="text" placeholder="Search Name...">
+            <form action="serviceTypeWeb" method="post">
+                <input type="text" placeholder="Search Name..." name="name"
+                       <c:if test="${requestScope.name != null}">
+                           value="${requestScope.name}"
+                       </c:if>>                       
                 <button>Search</button>
             </form>
         </div>

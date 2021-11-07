@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Service;
 import model.ServiceType;
 
 /**
@@ -55,6 +56,13 @@ public class ServiceTypeWebController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+                String name = request.getParameter("name");
+        ServiceDBContext servDBC = new ServiceDBContext();
+        Service standard = new Service();
+        standard.setName(name);   
+        request.setAttribute("name", name);
+        request.setAttribute("serviceList", servDBC.paginateGetting(1, servDBC.getSize(standard), standard));
+        request.getRequestDispatcher("view/web/serviceListDetail.jsp").forward(request, response);
     }
 
     /**

@@ -19,7 +19,7 @@ import model.Employee;
  *
  * @author Admin
  */
-@WebServlet(name = "EmployeeUpdateController", urlPatterns = {"/updateEmployee"})
+@WebServlet(name = "EmployeeUpdateController", urlPatterns = {"/admin/updateEmployee"})
 public class EmployeeUpdateController extends HttpServlet {
 
     /**

@@ -10,7 +10,6 @@ package model;
  * @author Admin
  */
 public class Account extends AbsModel{
-    private int id;
     private String username;
     private String password;
     private int role;
@@ -18,20 +17,12 @@ public class Account extends AbsModel{
     public Account() {
     }
 
-    public Account(int id, String username, String password, int role) {
-        this.id = id;
+    public Account(String username, String password, int role) {
         this.username = username;
         this.password = password;
         this.role = role;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;

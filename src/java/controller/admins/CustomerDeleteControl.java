@@ -19,7 +19,7 @@ import model.Customer;
  *
  * @author Admin
  */
-@WebServlet(name = "CustomerDeleteControl", urlPatterns = {"/deleteCustomer"})
+@WebServlet(name = "CustomerDeleteControl", urlPatterns = {"/admin/deleteCustomer"})
 public class CustomerDeleteControl extends HttpServlet {
 
     /**

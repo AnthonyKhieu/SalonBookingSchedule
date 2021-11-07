@@ -47,7 +47,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="search-box">
-                                    <form action="employee" method="post">
+                                    <form action="${pageContext.request.contextPath}/admin/employee" method="post">
                                         Search Name <input type="text" name="searchName" class="form-control" placeholder="--All--"
                                                            <c:if test="${sessionScope.employeeModel.name != null}">
                                                                value="${sessionScope.employeeModel.name}"
@@ -77,12 +77,12 @@
                         <tbody>
                             <c:forEach items="${allEmployees}" var="e">
                                 <tr>
-                            <form method="post" action="updateEmployee?eid=${e.id}">
+                            <form method="post" action="${pageContext.request.contextPath}/admin/updateEmployee?eid=${e.id}">
                                 <td><input type="text" name="name" value="${e.name}"></td>
                                 <td><input type="text" name="insta" value="${e.insta}" required></td>
                                 <td><textarea name="description" cols="30" rows="8">${e.description}</textarea></td>
                                 <td>
-                                    <img src="images/${e.images}" alt="images/default.jpg" style="width: 100%; height: auto">
+                                    <img src="${pageContext.request.contextPath}/images/${e.images}" alt="images/default.jpg" style="width: 100%; height: auto">
                                     <input type="text" name="old_images" value="${e.images}">
                                     <input type="file" name="new_images" accept="image/png, image/jpeg, image/jpg"
                                            style="color: transparent;" title="addfile"
@@ -90,7 +90,7 @@
                                 </td>
                                 <td>
                                     <button class="edit" title="Save" data-toggle="tooltip"><i class="material-icons">&#10003;</i></button>
-                                    <a href="deleteEmployee?eid=${e.id}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#10007;</i></a>
+                                    <a href="${pageContext.request.contextPath}/admin/deleteEmployee?eid=${e.id}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#10007;</i></a>
                                 </td>
                             </form>
                             </tr>    
@@ -103,7 +103,7 @@
                         <ul class="pagination">
                             <li class="page-item page">
                                 <c:if test="${pageCurrent != 1}">
-                                    <a href="employee?pageNo=${pageCurrent - 1}"> Previous </a>
+                                    <a href="${pageContext.request.contextPath}/admin/employee?pageNo=${pageCurrent - 1}"> Previous </a>
                                 </c:if>
                             </li>
                             <c:forEach var="pageNo" begin="1" end="${totalPage}">
@@ -111,21 +111,21 @@
                                     <c:if test="${pageCurrent == pageNo}">
                                         active
                                     </c:if>">
-                                    <a href="employee?pageNo=${pageNo}">
+                                    <a href="${pageContext.request.contextPath}/admin/employee?pageNo=${pageNo}">
                                         ${pageNo}
                                     </a>
                                 </li>
                             </c:forEach> 
                             <li class="page-item page">
                                 <c:if test="${pageCurrent != totalPage}">
-                                    <a href="employee?pageNo=${pageCurrent + 1}"> Next </a>
+                                    <a href="${pageContext.request.contextPath}/admin/employee?pageNo=${pageCurrent + 1}"> Next </a>
                                 </c:if>
                             </li>
                         </ul>
                     </div>
                     <!-- Insert form -->
                     <div class="form-popup" id="myForm">
-                        <form action="createCustomer" class="form-container" method="post">
+                        <form action="${pageContext.request.contextPath}/admin/createEmployee" class="form-container" method="post">
                             <span onclick="closeForm()" style="float:right"> Close </span>
                             <h2 style="text-align: center; color:  #00cc33"> Insert form </h2>
 

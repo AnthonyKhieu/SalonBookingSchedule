@@ -194,7 +194,7 @@ public class ServiceDBContext extends DBContext implements AbsDBC<Service> {
                 conditions.add(standard.getPrice());
             }
             if (standard.getType() != null && standard.getType().getTypeID() != 0) {
-                query += "and s.typeID = ?";
+                query += "and typeID = ?";
                 conditions.add(standard.getType().getTypeID());
             }
             PreparedStatement ps = connection.prepareStatement(query);

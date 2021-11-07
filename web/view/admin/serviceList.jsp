@@ -113,7 +113,7 @@ Author     : Admin
                             <form method="post" action="updateServices?sid=${s.id}">
                                 <td><input type="text" name="name" value="${s.name}" required style="width: 120px"></td>
                                 <td>
-                                    <img src="images/${s.images}" alt="images/default.jpg" style="width: 100%; height: auto">
+                                    <img src="${pageContext.request.contextPath}/images/${s.images}" alt="${pageContext.request.contextPath}/images/default.jpg" style="width: 100%; height: auto">
                                     <input type="text" name="old_images" value="${s.images}" style="display: none">
 
                                     <input type="file" name="new_images" accept="image/png, image/jpeg, image/jpg"
@@ -157,7 +157,7 @@ Author     : Admin
                         <ul class="pagination">
                             <li class="page-item page">
                                 <c:if test="${pageCurrent - 2 > 1}">
-                                    <a href="customer?pageNo=1"> First </a>
+                                    <a href="service?pageNo=1"> First </a>
                                 </c:if>
                             </li>
                             <c:set var = "pageHead" value = "${pageCurrent - 2 > 1 ? pageCurrent - 2 : 1 }"/>
@@ -167,14 +167,14 @@ Author     : Admin
                                     <c:if test="${pageCurrent == pageNo}">
                                         active
                                     </c:if>">
-                                    <a href="customer?pageNo=${pageNo}">
+                                    <a href="service?pageNo=${pageNo}">
                                         ${pageNo}
                                     </a>
                                 </li>
                             </c:forEach> 
                             <li class="page-item page">
                                 <c:if test="${pageCurrent < totalPage - 2}">
-                                    <a href="customer?pageNo=${totalPage}"> Last </a>
+                                    <a href="service?pageNo=${totalPage}"> Last </a>
                                 </c:if>
                             </li>
                         </ul>
